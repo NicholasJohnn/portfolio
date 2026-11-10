@@ -52,4 +52,23 @@ The floating islands are generated in code (`main.js`, section "World pieces"). 
 ## Before going live
 
 - [x] Contact method: email. To change the address, edit `CONTACT_EMAIL` near the top of `main.js`.
-- [ ] Pick a host and connect the domain
+- [x] Hosted on GitHub Pages (repo `NicholasJohnn/portfolio`, branch `main`), live at https://nicholasjohn-portfolio.com
+
+## Publishing changes
+
+Edit files, preview locally, then from the `portfolio-site` folder:
+```
+git add -A
+git commit -m "Describe the change"
+git push
+```
+GitHub Pages rebuilds automatically, usually live within a minute or two.
+
+## Domain
+
+`nicholasjohn-portfolio.com` is registered through ArtStation (auto-renew on, renews each February).
+Its DNS is set in ArtStation > Website Builder > Domains > Manage > DNS Editor:
+- `@` A records: 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153 (GitHub Pages)
+- `www` CNAME: nicholasjohnn.github.io
+
+"Reset to defaults" in that editor points the domain back to the ArtStation website. Keep the `CNAME` file in this folder: GitHub uses it to know the domain.
