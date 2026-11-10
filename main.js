@@ -711,6 +711,123 @@ if (galleryEnabled && location.hash === '#gallery') history.replaceState(null, '
 requestAnimationFrame(frame);
 
 /* ============================================================
+   Checkpoint scrolling for the opening sections.
+   Hero → About → Experience → Featured: one scroll gesture glides to the next
+   text, centred on screen. Below Featured, scrolling is normal again.
+   ============================================================ */
+(() => {
+  const sections = [
+    document.querySelector('.hero'),
+    document.querySelector('.about'),
+    document.querySelector('.exp'),
+    document.querySelector('.featured'),
+  ];
+  const root = document.documentElement;
+  const maxY = () => root.scrollHeight - innerHeight;
+  // Where each checkpoint sits: the hero at the very top, the others centred in the viewport
+  const stops = () => sections.map((s, i) => i === 0 ? 0
+    : Math.max(0, Math.min(maxY(), Math.round(s.offsetTop + (s.offsetHeight - innerHeight) / 2))));
+  const lastStop = () => stops()[sections.length - 1];
+  const nearest = y => { const s = stops(); let best = 0; s.forEach((v, i) => { if (Math.abs(v - y) < Math.abs(s[best] - y)) best = i; }); return best; };
+  const locked = () => root.classList.contains('g-lock');            // gallery open
+
+  let anim = null;
+  function glideTo(y) {
+    y = Math.max(0, Math.min(maxY(), y));
+    if (anim) cancelAnimationFrame(anim.raf);
+    const from = scrollY, dist = y - from;
+    if (Math.abs(dist) < 2) return;
+    if (reduceMotion) { scrollTo(0, y); return; }
+    const dur = Math.min(1100, 650 + Math.abs(dist) * 0.25);
+    const t0 = performance.now();
+    const easeIO = x => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+    anim = { raf: 0 };
+    const step = now => {
+      const k = Math.min(1, (now - t0) / dur);
+      scrollTo(0, from + dist * easeIO(k));
+      if (k < 1) anim.raf = requestAnimationFrame(step); else anim = null;
+    };
+    anim.raf = requestAnimationFrame(step);
+  }
+  function go(dir) {                                   // dir: +1 next, -1 previous
+    const s = stops(), y = scrollY;
+    if (dir > 0) { const i = s.findIndex(v => v > y + 4); if (i >= 0) glideTo(s[i]); }
+    else { let i = -1; s.forEach((v, k) => { if (v < y - 4) i = k; }); glideTo(i >= 0 ? s[i] : 0); }
+  }
+  // Should this gesture be handled as a checkpoint move (instead of normal scrolling)?
+  function inZone(dir) {
+    const y = scrollY, last = lastStop();
+    if (dir > 0) return y < last - 4;                                    // still before Featured
+    return y > 2 && y <= last + innerHeight * 0.6;                       // coming back up into the intro
+  }
+
+  // Mouse wheel / trackpad: one gesture = one checkpoint. Trackpad momentum is swallowed.
+  let lastWheel = 0, gestureUsed = false;
+  addEventListener('wheel', e => {
+    if (locked() || e.ctrlKey) return;
+    const now = performance.now();
+    const newGesture = now - lastWheel > 180;
+    lastWheel = now;
+    const dir = Math.sign(e.deltaY);
+    if (!dir) return;
+    if (anim || (!newGesture && gestureUsed)) {        // mid-glide or trailing momentum
+      if (anim || inZone(dir)) e.preventDefault();
+      return;
+    }
+    gestureUsed = false;
+    if (!inZone(dir)) return;                          // normal scrolling below the intro
+    e.preventDefault();
+    if (Math.abs(e.deltaY) < 4) return;                // ignore tiny trackpad jitter
+    gestureUsed = true;
+    go(dir);
+  }, { passive: false });
+
+  // Keyboard
+  addEventListener('keydown', e => {
+    if (locked() || e.defaultPrevented || e.target.closest?.('input, textarea, select, [contenteditable]')) return;
+    const down = ['ArrowDown', 'PageDown', ' '].includes(e.key) && !e.shiftKey;
+    const up = ['ArrowUp', 'PageUp'].includes(e.key) || (e.key === ' ' && e.shiftKey);
+    const dir = down ? 1 : up ? -1 : 0;
+    if (!dir || !inZone(dir)) return;
+    e.preventDefault();
+    go(dir);
+  });
+
+  // Touch: a swipe moves one checkpoint
+  let touch = null;
+  addEventListener('touchstart', e => { if (!locked()) touch = { y: e.touches[0].clientY, moved: false }; }, { passive: true });
+  addEventListener('touchmove', e => {
+    if (!touch || locked()) return;
+    const dy = touch.y - e.touches[0].clientY;
+    const dir = Math.sign(dy);
+    if (dir && (anim || inZone(dir))) { e.preventDefault(); touch.moved = true; touch.dir = dir; touch.dy = dy; }
+  }, { passive: false });
+  addEventListener('touchend', () => {
+    if (touch?.moved && Math.abs(touch.dy) > 30 && !anim) go(touch.dir);
+    touch = null;
+  });
+
+  // Scrollbar drags, resizes, etc.: once scrolling settles inside the intro, glide to the nearest checkpoint
+  let idle = 0;
+  addEventListener('scroll', () => {
+    clearTimeout(idle);
+    if (anim || locked()) return;
+    idle = setTimeout(() => {
+      if (anim || locked() || touch || performance.now() - lastWheel < 200) return;
+      const y = scrollY;
+      if (y < lastStop() - 4) { const s = stops(); const i = nearest(y); if (Math.abs(s[i] - y) > 4) glideTo(s[i]); }
+    }, 220);
+  }, { passive: true });
+
+  // Menu / in-page links to intro sections land on their checkpoint
+  document.querySelectorAll('a[href="#top"], a[href="#about"]').forEach(a => a.addEventListener('click', e => {
+    if (a.hasAttribute('data-gallery')) return;
+    e.preventDefault();
+    glideTo(stops()[a.getAttribute('href') === '#top' ? 0 : 1]);
+  }));
+})();
+
+/* ============================================================
    Intro, reveals, cursor
    ============================================================ */
 loaderFill.style.width = '100%';
