@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nicholas John · Level Designer</title>
+  <meta name="description" content="Nicholas John, a level designer in Vancouver building worlds in UEFN, Unreal and Unity.">
+  <meta name="theme-color" content="#0b0912">
+  <link rel="canonical" href="https://nicholasjohn-portfolio.com/">
+
+  <!-- Link previews (LinkedIn, Discord, Slack, X, iMessage) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nicholas John">
+  <meta property="og:title" content="Nicholas John · Level Designer">
+  <meta property="og:description" content="Level designer in Vancouver building worlds in UEFN, Unreal and Unity. From first whitebox to final lighting.">
+  <meta property="og:url" content="https://nicholasjohn-portfolio.com/">
+  <meta property="og:image" content="https://cdna.artstation.com/p/assets/images/images/083/726/990/large/nicholas-john-screenshot04.jpg?1736643101">
+  <meta property="og:image:alt" content="CoreUndead: a player faces the glowing Core across the level">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Helps search engines show your name and role -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nicholas John",
+    "jobTitle": "Level Designer",
+    "address": { "@type": "PostalAddress", "addressLocality": "Vancouver", "addressCountry": "CA" },
+    "url": "https://nicholasjohn-portfolio.com/",
+    "sameAs": [
+      "https://www.artstation.com/nicholasjohn",
+      "https://www.linkedin.com/in/nicholas-johnn",
+      "https://accidentalmallu.itch.io/"
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 3D world behind everything -->
+  <canvas id="world" aria-hidden="true"></canvas>
+
+  <!-- Intro loader -->
+  <div class="loader" id="loader">
+    <span class="loader-mark">NJ</span>
+    <span class="loader-bar"><i id="loaderFill"></i></span>
+  </div>
+
+  <div class="progress" aria-hidden="true"><i id="progressFill"></i></div>
+
+  <header class="nav">
+    <a class="nav-logo" href="#top">Nicholas John</a>
+    <nav>
+      <a href="#work" data-gallery>Work</a>
+      <a href="#breakdowns">Breakdowns</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <p class="eyebrow reveal">Level Designer · Vancouver</p>
+      <h1 class="hero-title">
+        <span class="line"><span>Nicholas</span></span>
+        <span class="line"><span>John</span></span>
+      </h1>
+      <p class="hero-sub reveal">I build worlds players want to explore, from first whitebox to final lighting.</p>
+      <div class="hero-cta reveal g-only">
+        <a class="btn primary" href="#work" data-gallery>Enter the gallery <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="scroll-hint reveal"><span></span>Scroll to explore</div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="panel about" id="about">
+      <div class="card glass reveal">
+        <p class="eyebrow">About</p>
+        <h2>Designing spaces with a <em>reason to move</em>.</h2>
+        <p>I'm a level designer working in <strong>UEFN</strong>, <strong>Unreal</strong> and <strong>Unity</strong>. At Visceral Technology I designed and iterated Fortnite levels, writing the design docs that guided each build. In my own projects I take a level the whole way: blockout, combat encounters, set dressing and lighting.</p>
+        <p>Right now I'm building a roguelike in UEFN with <strong>Verse</strong>.</p>
+        <div class="chips">
+          <span>Level Design</span><span>Game Design</span><span>Combat Design</span>
+          <span>Whiteboxing</span><span>Set Dressing</span><span>Lighting</span><span>Documentation</span>
+        </div>
+        <div class="chips tools">
+          <span>UEFN · Verse</span><span>Unreal Engine</span><span>Unity</span><span>Blender</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE (short beat between about and work, lets the camera travel) -->
+    <section class="panel exp">
+      <div class="card glass reveal right">
+        <p class="eyebrow">Experience</p>
+        <h3>Level Designer · Visceral Technology</h3>
+        <p class="muted">Mar 2025 – Aug 2025 · Richmond, BC</p>
+        <ul>
+          <li>Built immersive Fortnite levels in UEFN</li>
+          <li>Conceptualized, created and iterated levels</li>
+          <li>Wrote level design documents covering concepts, objectives and gameplay</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FEATURED -->
+    <section class="featured" id="work">
+      <div class="featured-inner">
+        <p class="eyebrow reveal">Featured project</p>
+        <a class="featured-media reveal" href="https://www.artstation.com/artwork/DLE6En" target="_blank" rel="noopener">
+          <img src="img/coreundead.jpg" alt="CoreUndead: the player faces the glowing Core cube across the level" loading="lazy">
+          <span class="featured-tag">UEFN · Game Design</span>
+        </a>
+        <div class="featured-text reveal">
+          <h2>CoreUndead</h2>
+          <p class="role">Action Adventure / Shooter · Game Design, Level Design, Combat Design, Set Dressing, Lighting</p>
+          <p>My first complete game in UEFN, taken from the first design document to a <strong>published, playable island</strong>. All gameplay built with Fortnite's creative devices.</p>
+          <ul class="highlights">
+            <li>The glowing Core is visible from every part of the map, always pulling players toward the goal</li>
+            <li>Unique "special trees" act as landmarks so players never lose their bearings</li>
+          </ul>
+          <div class="btns">
+            <a class="btn primary" href="https://www.artstation.com/artwork/DLE6En" target="_blank" rel="noopener">View project</a>
+            <a class="btn" href="https://www.fortnite.com/@accidentalmallu/9981-8767-7616" target="_blank" rel="noopener">Play in Fortnite</a>
+            <a class="btn ghost" href="https://www.artstation.com/blogs/nicholasjohn/1ZGeW/core-undead" target="_blank" rel="noopener">Read breakdown</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="projects">
+      <div class="projects-head reveal">
+        <p class="eyebrow">More work</p>
+        <div class="head-row">
+          <h2>Projects</h2>
+          <a class="btn g-only" href="#work" data-gallery>View all in 3D <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <!-- BREAKDOWNS -->
+    <section class="breakdowns" id="breakdowns">
+      <div class="projects-head reveal">
+        <p class="eyebrow">Process</p>
+        <div class="head-row">
+          <h2>Breakdowns</h2>
+          <a class="btn g-only" href="#breakdowns" data-gallery="breakdowns">View in 3D <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="lede">How each level was planned and built: references, metrics gyms, layouts, intensity charts and combat pacing.</p>
+      </div>
+      <ol class="bd-list" id="bdList"></ol>
+      <div class="bd-float" id="bdFloat" aria-hidden="true"><img alt=""></div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="contact-inner reveal">
+        <p class="eyebrow">Open to full-time, contract and freelance</p>
+        <h2>Let's build something<br>players remember.</h2>
+        <div class="btns center">
+          <!-- The email address is assembled in main.js (CONTACT_EMAIL) so spam bots can't read it from the HTML -->
+          <a class="btn primary js-email" href="https://www.artstation.com/nicholasjohn" target="_blank" rel="noopener">Get in touch</a>
+          <a class="btn" href="https://www.artstation.com/nicholasjohn/resume" target="_blank" rel="noopener">Resume</a>
+        </div>
+        <button class="email-line" id="emailLine" type="button" hidden>
+          <span id="emailText"></span><span class="email-copy" id="emailCopy">Copy</span>
+        </button>
+        <div class="socials">
+          <a href="https://www.artstation.com/nicholasjohn" target="_blank" rel="noopener">ArtStation</a>
+          <a href="https://www.linkedin.com/in/nicholas-johnn" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://accidentalmallu.itch.io/" target="_blank" rel="noopener">itch.io</a>
+          <a href="https://www.instagram.com/nocogames_" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <footer>© Nicholas John</footer>
+    </section>
+  </main>
+
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

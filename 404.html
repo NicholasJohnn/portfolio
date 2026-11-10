@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lost · Nicholas John</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #0b0912; --ink: #f2eee8; --muted: #a8a1b3; --accent: #ff7a2f; --glow: #b14dff; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px;
+      background: radial-gradient(90% 70% at 50% 30%, #2b1650 0%, var(--bg) 70%); color: var(--ink);
+      font: 400 16px/1.6 "Inter", system-ui, sans-serif; text-align: center;
+    }
+    .cube { width: 64px; height: 64px; margin: 0 auto 28px; border: 1.5px solid #e3c4ff; transform: rotate(45deg);
+      display: grid; place-items: center; box-shadow: 0 0 60px rgba(177,77,255,.55); animation: float 4s ease-in-out infinite; }
+    .cube::after { content: ""; width: 34px; height: 34px; background: var(--glow); box-shadow: 0 0 30px var(--glow); }
+    @keyframes float { 50% { transform: rotate(45deg) translate(-6px, -6px); } }
+    p.eyebrow { margin: 0 0 10px; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: var(--accent); }
+    h1 { margin: 0 0 12px; font: 700 clamp(34px, 7vw, 64px)/1.1 "Cinzel", Georgia, serif; }
+    p { color: var(--muted); max-width: 420px; margin: 0 auto 28px; }
+    a { display: inline-block; padding: 11px 20px; border-radius: 999px; background: var(--accent); color: #140b05;
+      text-decoration: none; font-weight: 500; font-size: 14px; }
+    a:hover { background: #ff9152; }
+    @media (prefers-reduced-motion: reduce) { .cube { animation: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="cube" aria-hidden="true"></div>
+    <p class="eyebrow">404</p>
+    <h1>Out of bounds</h1>
+    <p>This area isn't part of the level. Head back to the start to find the work.</p>
+    <a href="/">Back to the start</a>
+  </main>
+</body>
+</html>
