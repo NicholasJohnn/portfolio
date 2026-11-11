@@ -1,7 +1,7 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 
 /*
-  Curved 3D gallery: every project and breakdown as a glowing card on a ring around the viewer,
+  Curved 3D gallery: every project and breakdown as a card on a ring around the viewer,
   with a reflective floor. Rendered into its own scene; main.js handles the transition into it.
 */
 export function createGallery(renderer, items, { onRequestClose } = {}) {
@@ -43,12 +43,11 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
       float d = sdRound(p, vec2(cardAspect * 0.5, 0.5), 0.055);
       float alpha = 1.0 - smoothstep(-0.004, 0.002, d);
       float border = 1.0 - smoothstep(0.0, 0.014, abs(d + 0.007));
-      vec3 glow = vec3(0.69, 0.30, 1.0);
+      vec3 edge = vec3(0.92, 0.90, 0.95);          // neutral frame: the purple glow belongs to the Core only
       float lum = dot(col, vec3(0.299, 0.587, 0.114));
       col = mix(vec3(lum), col, mix(0.45, 1.0, focus));          // side cards slightly desaturated
       col *= mix(0.16, 1.0, focus) * (1.0 + 0.6 * hover * (1.0 - focus));
-      col += glow * border * (0.25 + 1.4 * focus);
-      col += glow * 0.10 * focus * smoothstep(0.55, 1.0, vUv.y);
+      col += edge * border * (0.08 + 0.34 * focus);
       float fade = 1.0 - smoothstep(8.5, 15.0, vDepth);
       if (isReflection > 0.5) { alpha *= smoothstep(0.25, 1.0, vUv.y) * 0.5; }
       gl_FragColor = vec4(col * mix(0.15, 1.0, fade), alpha * mix(0.25, 1.0, fade));
@@ -95,10 +94,10 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
         void main(){
           float r = length(vW.xz);
           vec3 col = vec3(0.012, 0.008, 0.026);
-          col += vec3(0.30, 0.10, 0.55) * 0.09 * exp(-pow(max(r - 5.5, 0.0), 1.2) * 0.35) * smoothstep(9.0, 6.0, r);
+          col += vec3(0.16, 0.14, 0.20) * 0.09 * exp(-pow(max(r - 5.5, 0.0), 1.2) * 0.35) * smoothstep(9.0, 6.0, r);
           vec2 g = abs(fract(vW.xz * 0.9) - 0.5) / fwidth(vW.xz * 0.9);
           float line = 1.0 - min(min(g.x, g.y), 1.0);
-          col += vec3(0.45, 0.22, 0.8) * line * 0.10 * exp(-r * 0.16);
+          col += vec3(0.36, 0.34, 0.42) * line * 0.10 * exp(-r * 0.16);
           gl_FragColor = vec4(col, 0.62 * smoothstep(26.0, 12.0, r));
           #include <colorspace_fragment>
         }`,
@@ -110,7 +109,7 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
 
   /* ---------- ceiling light strips ---------- */
   const strips = new THREE.Group();
-  const stripMat = new THREE.MeshBasicMaterial({ color: 0x6a3aa8, transparent: true, opacity: 0.35 });
+  const stripMat = new THREE.MeshBasicMaterial({ color: 0x4a4552, transparent: true, opacity: 0.35 });
   for (let i = 0; i < 48; i++) {
     const a = (i / 48) * Math.PI * 2;
     const s = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.02, 2.2), stripMat);
@@ -119,7 +118,7 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
     strips.add(s);
   }
   const ring = new THREE.Mesh(new THREE.TorusGeometry(R + 0.6, 0.012, 6, 160),
-    new THREE.MeshBasicMaterial({ color: 0xb14dff, transparent: true, opacity: 0.5 }));
+    new THREE.MeshBasicMaterial({ color: 0x6e6878, transparent: true, opacity: 0.35 }));
   ring.rotation.x = Math.PI / 2; ring.position.y = 2.7;
   strips.add(ring);
   scene.add(strips);
@@ -132,7 +131,7 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
   }
   const dustGeo = new THREE.BufferGeometry();
   dustGeo.setAttribute('position', new THREE.BufferAttribute(dp, 3));
-  const dust = new THREE.Points(dustGeo, new THREE.PointsMaterial({ color: 0xc89bff, size: 0.03, transparent: true, opacity: 0.6, depthWrite: false, blending: THREE.AdditiveBlending }));
+  const dust = new THREE.Points(dustGeo, new THREE.PointsMaterial({ color: 0xb9b2c4, size: 0.03, transparent: true, opacity: 0.6, depthWrite: false, blending: THREE.AdditiveBlending }));
   scene.add(dust);
 
   /* ---------- UI ---------- */
@@ -146,7 +145,6 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
     <div class="g-count" aria-live="polite"><b>01</b> / ${String(N).padStart(2, '0')}</div>
     <div class="g-bottom">
       <div class="g-info">
-        <p class="g-kind"></p>
         <h2 class="g-title"></h2>
         <p class="g-role"></p>
       </div>
@@ -175,9 +173,8 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
     const it = items[i];
     const info = $('.g-info');
     info.classList.remove('in'); void info.offsetWidth; info.classList.add('in');
-    $('.g-kind').textContent = it.kind;
     $('.g-title').textContent = it.title;
-    $('.g-role').textContent = it.role;
+    $('.g-role').textContent = `${it.kind} · ${it.role}`;   // kind folded into the role line (no label above the title)
     $('.g-openbtn').href = it.url;
     $('.g-openbtn').textContent = it.kind === 'Breakdown' ? 'Read breakdown ↗' : 'Open project ↗';
     $('.g-count b').textContent = String(i + 1).padStart(2, '0');

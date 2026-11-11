@@ -264,7 +264,7 @@ const M = {
   soil: mat(0x6a4a37), rock: mat(0x5c4a44), rockDark: mat(0x3d3036),
   stone: mat(0x7d7590), trunk: mat(0x5a3b28),
   leaves: [mat(0x3f7a3a), mat(0x5b8f3c), mat(0x2f6b4a)],
-  special: mat(0xb14dff, { emissive: 0x6d1fb3, emissiveIntensity: 0.9 }),
+  special: mat(0xb14dff, { emissive: 0x6d1fb3, emissiveIntensity: 0.25 }),   // purple leaves, but only the Core glows
   flame: new THREE.MeshBasicMaterial({ color: 0xffb066 }),
   cloud: mat(0x2a1a44, { roughness: 1, transparent: true, opacity: 0.55 }),
 };
@@ -706,6 +706,15 @@ document.querySelectorAll('[data-gallery]').forEach(el => {
     openGallery(el.dataset.gallery === 'breakdowns' ? FIRST_BREAKDOWN : 0);
   });
 });
+// Hero work tiles open the gallery on that project (or fall back to the ArtStation link)
+document.querySelectorAll('[data-gallery-index]').forEach(el => {
+  if (!galleryEnabled) return;
+  el.addEventListener('click', e => {
+    if (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) return;   // let "open in new tab" work
+    e.preventDefault();
+    openGallery(+el.dataset.galleryIndex);
+  });
+});
 if (galleryEnabled && location.hash === '#gallery') history.replaceState(null, '', location.pathname);
 
 requestAnimationFrame(frame);
@@ -785,6 +794,7 @@ requestAnimationFrame(frame);
   // Keyboard
   addEventListener('keydown', e => {
     if (locked() || e.defaultPrevented || e.target.closest?.('input, textarea, select, [contenteditable]')) return;
+    if (e.key === ' ' && e.target.closest?.('a, button')) return;          // Space presses a focused button, it doesn't scroll
     const down = ['ArrowDown', 'PageDown', ' '].includes(e.key) && !e.shiftKey;
     const up = ['ArrowUp', 'PageUp'].includes(e.key) || (e.key === ' ' && e.shiftKey);
     const dir = down ? 1 : up ? -1 : 0;
@@ -795,10 +805,12 @@ requestAnimationFrame(frame);
 
   // Touch: a swipe moves one checkpoint
   let touch = null;
-  addEventListener('touchstart', e => { if (!locked()) touch = { y: e.touches[0].clientY, moved: false }; }, { passive: true });
+  addEventListener('touchstart', e => { if (!locked()) touch = { x: e.touches[0].clientX, y: e.touches[0].clientY, moved: false }; }, { passive: true });
   addEventListener('touchmove', e => {
     if (!touch || locked()) return;
     const dy = touch.y - e.touches[0].clientY;
+    const dx = touch.x - e.touches[0].clientX;
+    if (!touch.moved && Math.abs(dx) > Math.abs(dy)) { touch = null; return; }   // sideways swipe (e.g. the work row): leave it alone
     const dir = Math.sign(dy);
     if (dir && (anim || inZone(dir))) { e.preventDefault(); touch.moved = true; touch.dir = dir; touch.dy = dy; }
   }, { passive: false });
@@ -819,11 +831,18 @@ requestAnimationFrame(frame);
     }, 220);
   }, { passive: true });
 
-  // Menu / in-page links to intro sections land on their checkpoint
-  document.querySelectorAll('a[href="#top"], a[href="#about"]').forEach(a => a.addEventListener('click', e => {
-    if (a.hasAttribute('data-gallery')) return;
+  // In-page links (menu, logo) glide to their section; intro sections land on their checkpoint.
+  // Gallery buttons (data-gallery) are handled separately and open the 3D gallery instead.
+  const checkpointOf = { '#top': 0, '#about': 1, '#work': 3 };
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (a.hasAttribute('data-gallery') || href === '#') return;
+    const el = document.querySelector(href);
+    if (!el) return;
     e.preventDefault();
-    glideTo(stops()[a.getAttribute('href') === '#top' ? 0 : 1]);
+    if (locked()) return;
+    glideTo(href in checkpointOf ? stops()[checkpointOf[href]] : el.getBoundingClientRect().top + scrollY);
+    if (e.detail === 0) el.setAttribute('tabindex', '-1'), el.focus({ preventScroll: true });   // keyboard activation: move focus too
   }));
 })();
 

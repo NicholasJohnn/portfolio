@@ -56,7 +56,7 @@
   <header class="nav">
     <a class="nav-logo" href="#top">Nicholas John</a>
     <nav>
-      <a href="#work" data-gallery>Work</a>
+      <a href="#work">Work</a>
       <a href="#breakdowns">Breakdowns</a>
       <a href="#about">About</a>
       <a href="https://accidentalmallu.itch.io/" target="_blank" rel="noopener">Games <span aria-hidden="true">↗</span></a>
@@ -67,22 +67,39 @@
   <main>
     <!-- HERO -->
     <section class="hero" id="top">
-      <p class="eyebrow reveal">Level Designer · Vancouver</p>
       <h1 class="hero-title">
         <span class="line"><span>Nicholas</span></span>
         <span class="line"><span>John</span></span>
       </h1>
-      <p class="hero-sub reveal">I build worlds players want to explore, from first whitebox to final lighting.</p>
-      <div class="hero-cta reveal g-only">
-        <a class="btn primary" href="#work" data-gallery>Enter the gallery <span aria-hidden="true">→</span></a>
+      <div class="hero-foot">
+        <div class="hero-intro">
+          <p class="hero-sub reveal"><strong>Level designer in Vancouver.</strong> I build worlds players want to explore, from first whitebox to final lighting.</p>
+          <div class="hero-cta reveal g-only">
+            <a class="btn primary" href="#work" data-gallery>Enter the gallery <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="scroll-hint reveal"><span></span>Scroll to explore</div>
+        </div>
+        <!-- First-screen work: real thumbnails. With the gallery on, a tile opens it at that project. -->
+        <ul class="hero-work reveal" aria-label="Selected projects">
+          <li><a href="https://www.artstation.com/artwork/DLE6En" target="_blank" rel="noopener" data-gallery-index="0">
+            <img src="img/coreundead.jpg" alt="" width="1920" height="1080" decoding="async">
+            <span class="hw-title">CoreUndead</span><span class="hw-meta">UEFN · Game design</span></a></li>
+          <li><a href="https://www.artstation.com/artwork/GeyrK3" target="_blank" rel="noopener" data-gallery-index="4">
+            <img src="img/bringer.jpg" alt="" width="1920" height="1280" decoding="async">
+            <span class="hw-title">Bringer of Death</span><span class="hw-meta">UE5 · Action RPG</span></a></li>
+          <li><a href="https://www.artstation.com/artwork/VJ6nWX" target="_blank" rel="noopener" data-gallery-index="2">
+            <img src="img/skypiea.jpg" alt="" width="1920" height="1080" decoding="async">
+            <span class="hw-title">Skypiea Island</span><span class="hw-meta">UE4 · Platformer</span></a></li>
+          <li><a href="https://www.artstation.com/artwork/lDWJBa" target="_blank" rel="noopener" data-gallery-index="3">
+            <img src="img/dragonwing.jpg" alt="" width="1920" height="694" decoding="async">
+            <span class="hw-title">DragonWing</span><span class="hw-meta">UE4 · Platformer</span></a></li>
+        </ul>
       </div>
-      <div class="scroll-hint reveal"><span></span>Scroll to explore</div>
     </section>
 
     <!-- ABOUT -->
     <section class="panel about" id="about">
       <div class="card glass reveal">
-        <p class="eyebrow">About</p>
         <h2>Designing spaces with a <em>reason to move</em>.</h2>
         <p>I'm a level designer working in <strong>UEFN</strong>, <strong>Unreal</strong> and <strong>Unity</strong>. At Visceral Technology I designed and iterated Fortnite levels, writing the design docs that guided each build. In my own projects I take a level the whole way: blockout, combat encounters, set dressing and lighting.</p>
         <p>Right now I'm building a roguelike in UEFN with <strong>Verse</strong>.</p>
@@ -99,7 +116,6 @@
     <!-- EXPERIENCE (short beat between about and work, lets the camera travel) -->
     <section class="panel exp">
       <div class="card glass reveal right">
-        <p class="eyebrow">Experience</p>
         <h3>Level Designer · Visceral Technology</h3>
         <p class="muted">Mar 2025 – Aug 2025 · Richmond, BC</p>
         <ul>
@@ -113,10 +129,8 @@
     <!-- FEATURED -->
     <section class="featured" id="work">
       <div class="featured-inner">
-        <p class="eyebrow reveal">Featured project</p>
         <a class="featured-media reveal" href="https://www.artstation.com/artwork/DLE6En" target="_blank" rel="noopener">
           <img src="img/coreundead.jpg" alt="CoreUndead: the player faces the glowing Core cube across the level" loading="lazy">
-          <span class="featured-tag">UEFN · Game Design</span>
         </a>
         <div class="featured-text reveal">
           <h2>CoreUndead</h2>
@@ -138,10 +152,9 @@
     <!-- PROJECTS -->
     <section class="projects">
       <div class="projects-head reveal">
-        <p class="eyebrow">More work</p>
         <div class="head-row">
           <h2>Projects</h2>
-          <a class="btn g-only" href="#work" data-gallery>View all in 3D <span aria-hidden="true">↗</span></a>
+          <a class="btn g-only" href="#work" data-gallery>Open in the gallery <span aria-hidden="true">→</span></a>
         </div>
       </div>
       <div class="grid" id="grid"></div>
@@ -150,10 +163,9 @@
     <!-- BREAKDOWNS -->
     <section class="breakdowns" id="breakdowns">
       <div class="projects-head reveal">
-        <p class="eyebrow">Process</p>
         <div class="head-row">
           <h2>Breakdowns</h2>
-          <a class="btn g-only" href="#breakdowns" data-gallery="breakdowns">View in 3D <span aria-hidden="true">↗</span></a>
+          <a class="btn g-only" href="#breakdowns" data-gallery="breakdowns">Open in the gallery <span aria-hidden="true">→</span></a>
         </div>
         <p class="lede">How each level was planned and built: references, metrics gyms, layouts, intensity charts and combat pacing.</p>
       </div>
@@ -164,8 +176,8 @@
     <!-- CONTACT -->
     <section class="contact" id="contact">
       <div class="contact-inner reveal">
-        <p class="eyebrow">Open to full-time, contract and freelance</p>
         <h2>Let's build something<br>players remember.</h2>
+        <p class="contact-note">Open to full-time, contract and freelance work.</p>
         <div class="btns center">
           <!-- The email address is assembled in main.js (CONTACT_EMAIL) so spam bots can't read it from the HTML -->
           <a class="btn primary js-email" href="https://www.artstation.com/nicholasjohn" target="_blank" rel="noopener">Get in touch</a>
