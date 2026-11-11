@@ -536,7 +536,7 @@ function frame() {
 }
 
 function updateWorld(dt, t) {
-  prog += (target - prog) * (reduceMotion ? 1 : 1 - Math.pow(0.0015, dt));
+  prog += (target - prog) * (1 - Math.pow(0.0015, dt));   // camera eases even with reduce-motion (user-driven, smooth)
   mouse.sx += (mouse.x - mouse.sx) * 0.05;
   mouse.sy += (mouse.y - mouse.sy) * 0.05;
 
@@ -737,7 +737,7 @@ requestAnimationFrame(frame);
     if (anim) cancelAnimationFrame(anim.raf);
     const from = scrollY, dist = y - from;
     if (Math.abs(dist) < 2) return;
-    if (reduceMotion) { scrollTo(0, y); return; }
+    // glides even with reduce-motion: a short, user-started scroll reads better than a hard jump
     const dur = Math.min(1100, 650 + Math.abs(dist) * 0.25);
     const t0 = performance.now();
     const easeIO = x => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
