@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.min.js';
-import { createGallery } from './gallery.js?v=15';
-import { createUndead } from './undead.js?v=15';
+import { createGallery } from './gallery.js?v=16';
+import { createUndead } from './undead.js?v=16';
 
 /* ============================================================
    Projects and breakdowns live in index.html (so they show even if this
@@ -358,7 +358,7 @@ const camPath = new THREE.CatmullRomCurve3([
   V(5, 11, -12),     // experience
   V(-3, 14.5, -30),  // featured
   V(6, 19, -48),     // projects
-  V(1, 20, -50),     // contact, facing the Core
+  V(0, 21, -60),     // contact: close to the Core so it reads as the payoff, above the headline
 ]);
 const lookPath = new THREE.CatmullRomCurve3([
   V(0, 2.5, 0),
@@ -366,7 +366,7 @@ const lookPath = new THREE.CatmullRomCurve3([
   V(-8, 9, -36),
   V(6, 13, -55),
   V(-1, 19, -76),
-  V(-1, 16.5, -76),  // aim below the Core so it sits in the upper part of the screen, above the contact text
+  V(-1, 18, -76),    // aim below the Core so it sits high on screen, clear of the contact text
 ]);
 
 let target = 0, prog = 0;
