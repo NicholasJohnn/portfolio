@@ -46,7 +46,7 @@
     document.documentElement.classList.add('js');
     setTimeout(function () { var l = document.getElementById('loader'); if (l) l.classList.add('done'); }, 5000);
   </script>
-  <link rel="stylesheet" href="style.css?v=10">
+  <link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
   <!-- 3D world behind everything -->
@@ -154,7 +154,7 @@
       <div class="case-inner reveal">
         <div class="case-head">
           <h2 id="case-title">CoreUndead, beat by beat</h2>
-          <p class="lede">The layout is linear, with secret areas that open up when the player destroys barriers. Each point of interest rewards exploring with loot or story moments, and each one ends in a boss fight.</p>
+          <p class="lede">The layout is linear, with secret areas that open up when the player destroys barriers. Each point of interest rewards exploring with loot or story moments, and some end in a boss fight.</p>
         </div>
 
         <div class="case-tabs" role="tablist" aria-label="CoreUndead level charts">
@@ -175,9 +175,15 @@
             </div>
           </div>
           <figcaption>
-            <span class="cs-cap cs-route">Six points of interest in a straight line, from the Passageway to the Floating Island, with secret areas off the main path.</span>
-            <span class="cs-cap cs-intensity">Intensity builds through the Caves to its peak in the Swamp, drops in the House, then climbs again for the Floating Island finale.</span>
-            <span class="cs-cap cs-combat">Combat spikes in the Caves, eases off in the Swamp, then stays high from the House to the end.</span>
+            <div class="cs-cap cs-route">Six points of interest in a straight line, from the Passageway to the Floating Island, with secret areas off the main path.</div>
+            <div class="cs-cap cs-intensity">
+              <p>Intensity builds through the Caves to its peak in the Swamp, drops in the House, then climbs again for the Floating Island finale. The Swamp's peak doesn't come from enemies: it comes from a pressure mechanic I keep secret from players.</p>
+              <details class="spoiler">
+                <summary>Reveal the spoiler</summary>
+                <p>The water keeps rising on a timer, and the player has to reach the end of the Swamp before it does. The pressure comes from the clock, not from enemies, which is why combat drops right where intensity peaks.</p>
+              </details>
+            </div>
+            <div class="cs-cap cs-combat">Combat spikes in the Caves and eases off in the Swamp, where the pressure comes from somewhere else, then stays high from the House to the end.</div>
           </figcaption>
         </figure>
 
@@ -313,10 +319,10 @@
   </main>
 
 
-  <script src="case.js?v=10"></script>
+  <script src="case.js?v=11"></script>
   <script src="vendor/gsap.min.js"></script>
   <script src="vendor/ScrollTrigger.min.js"></script>
   <!-- Bump ?v= on these when the files change, so browsers never mix a new page with an old cached script -->
-  <script type="module" src="main.js?v=10"></script>
+  <script type="module" src="main.js?v=11"></script>
 </body>
 </html>
