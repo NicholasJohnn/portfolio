@@ -11,7 +11,7 @@ const PROJECTS = [
     text: "Play a virus fighting its way to the cell's nucleus. Built in two weeks for the Rapid Prototyping course at the Centre for Entertainment Arts.",
     img: 'img/retrovirus.jpg',
     url: 'https://www.artstation.com/artwork/6N6YwW',
-    badge: 'Team',
+    badge: 'Team project',
   },
   {
     title: 'Spark: Skypiea Island',
@@ -33,14 +33,17 @@ const PROJECTS = [
     text: 'A souls-like action-RPG level built with my team at KPU, plus a custom outline post-process shader.',
     img: 'img/bringer.jpg',
     url: 'https://www.artstation.com/artwork/GeyrK3',
-    badge: 'Team',
+    badge: 'Team project',
   },
 ];
+
+// 640px copies in img/sm/ for thumbnails and previews; the full images are for large views
+const small = src => src.replace('img/', 'img/sm/');
 
 const grid = document.getElementById('grid');
 grid.innerHTML = PROJECTS.map(p => `
   <a class="proj reveal" href="${p.url}" target="_blank" rel="noopener">
-    <div class="proj-img"><img src="${p.img}" alt="${p.title}" loading="lazy"></div>
+    <div class="proj-img"><img src="${p.img}" alt="" loading="lazy" decoding="async" width="1600" height="900"></div>
     <div class="proj-body">
       <h3>${p.title}${p.badge ? `<span class="badge">${p.badge}</span>` : ''}</h3>
       <p class="proj-role">${p.role}</p>
@@ -95,8 +98,8 @@ const BREAKDOWNS = [
 
 document.getElementById('bdList').innerHTML = BREAKDOWNS.map(b => `
   <li class="bd-item reveal">
-    <a class="bd-link" href="${b.url}" target="_blank" rel="noopener" data-img="${b.img}">
-      <div class="bd-thumb"><img src="${b.img}" alt="" loading="lazy"></div>
+    <a class="bd-link" href="${b.url}" target="_blank" rel="noopener" data-img="${small(b.img)}">
+      <div class="bd-thumb"><img src="${small(b.img)}" alt="" loading="lazy" decoding="async" width="640" height="400"></div>
       <div>
         <h3 class="bd-title">${b.title}</h3>
         <span class="bd-sub">${b.sub}</span>
@@ -117,23 +120,30 @@ document.getElementById('bdList').innerHTML = BREAKDOWNS.map(b => `
   const float = document.getElementById('bdFloat');
   const img = float.querySelector('img');
   if (!matchMedia('(hover: hover) and (pointer: fine) and (min-width: 901px)').matches) return;
-  BREAKDOWNS.forEach(b => { const p = new Image(); p.src = b.img; });   // preload
+  // preload the small previews once the list is near, not on page load
+  new IntersectionObserver((entries, io) => {
+    if (!entries.some(e => e.isIntersecting)) return;
+    BREAKDOWNS.forEach(b => { const p = new Image(); p.src = small(b.img); });
+    io.disconnect();
+  }, { rootMargin: '600px 0px' }).observe(document.getElementById('bdList'));
   const pos = { x: 0, y: 0, tx: 0, ty: 0 };
-  let active = false;
+  let active = false, running = false;
   document.querySelectorAll('.bd-link').forEach(a => {
     a.addEventListener('pointerenter', e => {
       img.src = a.dataset.img;
       if (!active) { pos.x = pos.tx = e.clientX; pos.y = pos.ty = e.clientY; }
       active = true; float.classList.add('on');
+      if (!running) { running = true; requestAnimationFrame(move); }
     });
     a.addEventListener('pointerleave', () => { active = false; float.classList.remove('on'); });
   });
-  addEventListener('pointermove', e => { pos.tx = e.clientX + 190; pos.ty = e.clientY; });
-  (function move() {
+  addEventListener('pointermove', e => { pos.tx = e.clientX + 190; pos.ty = e.clientY; }, { passive: true });
+  // follows the cursor only while the preview is showing, so it costs nothing elsewhere on the page
+  function move() {
     pos.x += (pos.tx - pos.x) * 0.16; pos.y += (pos.ty - pos.y) * 0.16;
     float.style.transform = `translate(${pos.x}px, ${pos.y}px) translate(-50%, -50%) scale(${active ? 1 : 0.85})`;
-    requestAnimationFrame(move);
-  })();
+    if (active) requestAnimationFrame(move); else running = false;
+  }
 })();
 
 /* ============================================================
@@ -213,7 +223,10 @@ try {
   document.getElementById('loader').classList.add('done');
   throw e;
 }
-renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+// Phones and tablets get a lower render resolution and a smaller shadow map: the scene is soft and fogged,
+// so the difference is hard to see, but it roughly halves the GPU work on high-density screens.
+const lowPower = matchMedia('(pointer: coarse)').matches || innerWidth < 900;
+renderer.setPixelRatio(Math.min(devicePixelRatio, lowPower ? 1.25 : 1.5));
 renderer.setSize(innerWidth, innerHeight, false);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -251,7 +264,7 @@ const moon = new THREE.DirectionalLight(0xa9b8ff, 1.6);
 moon.position.set(-35, 60, 10);
 moon.target.position.set(0, 6, -38);
 moon.castShadow = true;
-moon.shadow.mapSize.set(2048, 2048);
+moon.shadow.mapSize.setScalar(lowPower ? 1024 : 2048);
 Object.assign(moon.shadow.camera, { left: -45, right: 45, top: 60, bottom: -60, near: 1, far: 160 });
 moon.shadow.bias = -0.0015;
 scene.add(moon, moon.target);
@@ -482,10 +495,16 @@ addEventListener('pointermove', e => {
 });
 
 const progressFill = document.getElementById('progressFill');
+// While Projects and Breakdowns cover the screen, the world only shows through at ~10% opacity,
+// so it renders at a quarter of the frame rate there.
+const coverFrom = document.querySelector('.projects'), coverTo = document.querySelector('.breakdowns');
+let covered = false;
 function readScroll() {
   const max = document.documentElement.scrollHeight - innerHeight;
   target = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
   progressFill.style.transform = `scaleX(${target})`;
+  const top = coverFrom.getBoundingClientRect().top + coverFrom.offsetHeight * 0.15;   // past its fade-in gradient
+  covered = top <= 0 && coverTo.getBoundingClientRect().bottom >= innerHeight;
 }
 addEventListener('scroll', readScroll, { passive: true });
 readScroll();
@@ -506,7 +525,9 @@ addEventListener('resize', () => {
    ============================================================ */
 const clock = new THREE.Clock();
 const look = new THREE.Vector3();
+let skipped = 0;
 function frame() {
+  if (covered && mix <= 0 && !trans.active && ++skipped % 4) { requestAnimationFrame(frame); return; }
   const dt = Math.min(clock.getDelta(), 0.05);
   const t = clock.elapsedTime;
   stepTransition();
@@ -699,6 +720,10 @@ function finishClose() {
 addEventListener('popstate', () => { if (gallery.isOpen) { pushedState = false; finishClose(); } });
 
 document.querySelectorAll('.g-only').forEach(el => { el.hidden = !galleryEnabled; });
+// Start downloading gallery images as soon as someone points at, touches or tabs to a gallery link
+document.querySelectorAll('[data-gallery], [data-gallery-index]').forEach(el => {
+  ['pointerenter', 'touchstart', 'focus'].forEach(ev => el.addEventListener(ev, () => gallery.preload(), { once: true, passive: true }));
+});
 document.querySelectorAll('[data-gallery]').forEach(el => {
   if (!galleryEnabled) return;            // plain anchor links keep working without the gallery
   el.addEventListener('click', e => {

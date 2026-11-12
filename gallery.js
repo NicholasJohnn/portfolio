@@ -56,20 +56,24 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
 
   const loader = new THREE.TextureLoader();
   const cards = [], reflections = [];
+  const textureJobs = [];
+  let texturesRequested = false;
   let geo = bentPlane(W, H);
   items.forEach((it, i) => {
     const uniforms = {
       map: { value: null }, imgAspect: { value: 16 / 9 }, cardAspect: { value: W / H },
       focus: { value: 0 }, hover: { value: 0 }, isReflection: { value: 0 }, ready: { value: 0 },
     };
-    const tex = loader.load(it.img, t => {
-      t.colorSpace = THREE.SRGBColorSpace;
-      t.anisotropy = renderer.capabilities.getMaxAnisotropy();
-      t.needsUpdate = true;
-      uniforms.imgAspect.value = t.image.width / t.image.height;
-      uniforms.ready.value = 1;
+    // Textures download only when the gallery is about to open (see preload), not with the page
+    textureJobs.push(() => {
+      uniforms.map.value = loader.load(it.img, t => {
+        t.colorSpace = THREE.SRGBColorSpace;
+        t.anisotropy = renderer.capabilities.getMaxAnisotropy();
+        t.needsUpdate = true;
+        uniforms.imgAspect.value = t.image.width / t.image.height;
+        uniforms.ready.value = 1;
+      });
     });
-    uniforms.map.value = tex;
     const mat = new THREE.ShaderMaterial({ uniforms, vertexShader: cardVert, fragmentShader: cardFrag, transparent: true, side: THREE.DoubleSide });
     const card = new THREE.Mesh(geo, mat);
     card.userData.index = i;
@@ -141,7 +145,7 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
   ui.setAttribute('role', 'dialog');
   ui.setAttribute('aria-label', 'All work gallery');
   ui.innerHTML = `
-    <button class="g-back" type="button"><span aria-hidden="true">←</span> Back</button>
+    <button class="g-back" type="button"><span aria-hidden="true">←</span> Exit gallery</button>
     <div class="g-count" aria-live="polite"><b>01</b> / ${String(N).padStart(2, '0')}</div>
     <div class="g-bottom">
       <div class="g-info">
@@ -149,12 +153,12 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
         <p class="g-role"></p>
       </div>
       <div class="g-controls">
-        <button class="g-arrow g-prev" type="button" aria-label="Previous">←</button>
-        <a class="btn primary g-openbtn" target="_blank" rel="noopener">Open</a>
-        <button class="g-arrow g-next" type="button" aria-label="Next">→</button>
+        <button class="g-arrow g-prev" type="button" aria-label="Previous piece">←</button>
+        <a class="btn primary g-openbtn" target="_blank" rel="noopener">View project ↗</a>
+        <button class="g-arrow g-next" type="button" aria-label="Next piece">→</button>
       </div>
-      <div class="g-ticks">${items.map((it, i) => `<button type="button" aria-label="${it.title}" data-i="${i}"></button>`).join('')}</div>
-      <p class="g-hint">Drag, scroll or use the arrow keys · Esc to go back</p>
+      <div class="g-ticks">${items.map((it, i) => `<button type="button" aria-label="Show ${it.title}" data-i="${i}"></button>`).join('')}</div>
+      <p class="g-hint">Drag, scroll or use the arrow keys · Esc to exit</p>
     </div>`;
   document.body.appendChild(ui);
   const $ = s => ui.querySelector(s);
@@ -176,7 +180,7 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
     $('.g-title').textContent = it.title;
     $('.g-role').textContent = `${it.kind} · ${it.role}`;   // kind folded into the role line (no label above the title)
     $('.g-openbtn').href = it.url;
-    $('.g-openbtn').textContent = it.kind === 'Breakdown' ? 'Read breakdown ↗' : 'Open project ↗';
+    $('.g-openbtn').textContent = it.kind === 'Breakdown' ? 'Read breakdown ↗' : 'View project ↗';
     $('.g-count b').textContent = String(i + 1).padStart(2, '0');
     ticks.forEach((t, k) => t.classList.toggle('on', k === i));
   }
@@ -302,7 +306,13 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
   return {
     scene, camera, update, layout,
     get isOpen() { return open; },
+    preload() {
+      if (texturesRequested) return;
+      texturesRequested = true;
+      textureJobs.forEach(job => job());
+    },
     show(startIndex = 0) {
+      this.preload();
       open = true; target = offset = clampT(startIndex); current = -1;
       updateInfo(Math.round(offset));
       ui.hidden = false;

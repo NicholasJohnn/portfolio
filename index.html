@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Nicholas John · Level Designer</title>
   <meta name="description" content="Nicholas John, a level designer in Vancouver building worlds in UEFN, Unreal and Unity.">
   <meta name="theme-color" content="#0b0912">
@@ -37,7 +37,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -82,16 +82,16 @@
         <!-- First-screen work: real thumbnails. With the gallery on, a tile opens it at that project. -->
         <ul class="hero-work reveal" aria-label="Selected projects">
           <li><a href="https://www.artstation.com/artwork/DLE6En" target="_blank" rel="noopener" data-gallery-index="0">
-            <img src="img/coreundead.jpg" alt="" width="1920" height="1080" decoding="async">
+            <img src="img/sm/coreundead.jpg" alt="" width="640" height="360" decoding="async" fetchpriority="high">
             <span class="hw-title">CoreUndead</span><span class="hw-meta">UEFN · Game design</span></a></li>
           <li><a href="https://www.artstation.com/artwork/GeyrK3" target="_blank" rel="noopener" data-gallery-index="4">
-            <img src="img/bringer.jpg" alt="" width="1920" height="1280" decoding="async">
+            <img src="img/sm/bringer.jpg" alt="" width="640" height="427" decoding="async" fetchpriority="high">
             <span class="hw-title">Bringer of Death</span><span class="hw-meta">UE5 · Action RPG</span></a></li>
           <li><a href="https://www.artstation.com/artwork/VJ6nWX" target="_blank" rel="noopener" data-gallery-index="2">
-            <img src="img/skypiea.jpg" alt="" width="1920" height="1080" decoding="async">
+            <img src="img/sm/skypiea.jpg" alt="" width="640" height="360" decoding="async" fetchpriority="high">
             <span class="hw-title">Skypiea Island</span><span class="hw-meta">UE4 · Platformer</span></a></li>
           <li><a href="https://www.artstation.com/artwork/lDWJBa" target="_blank" rel="noopener" data-gallery-index="3">
-            <img src="img/dragonwing.jpg" alt="" width="1920" height="694" decoding="async">
+            <img src="img/sm/dragonwing.jpg" alt="" width="640" height="231" decoding="async" fetchpriority="high">
             <span class="hw-title">DragonWing</span><span class="hw-meta">UE4 · Platformer</span></a></li>
         </ul>
       </div>
@@ -184,7 +184,7 @@
           <a class="btn" href="https://www.artstation.com/nicholasjohn/resume" target="_blank" rel="noopener">Resume</a>
         </div>
         <button class="email-line" id="emailLine" type="button" hidden>
-          <span id="emailText"></span><span class="email-copy" id="emailCopy">Copy</span>
+          <span id="emailText"></span><span class="email-copy" id="emailCopy" aria-live="polite">Copy</span>
         </button>
         <div class="socials">
           <a href="https://www.artstation.com/nicholasjohn" target="_blank" rel="noopener">ArtStation</a>
