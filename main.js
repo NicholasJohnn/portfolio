@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.min.js';
-import { createGallery } from './gallery.js?v=13';
-import { createUndead } from './undead.js?v=13';
+import { createGallery } from './gallery.js?v=14';
+import { createUndead } from './undead.js?v=14';
 
 /* ============================================================
    Projects and breakdowns live in index.html (so they show even if this

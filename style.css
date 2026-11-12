@@ -191,6 +191,24 @@ h3 { font: 600 20px/1.3 var(--sans); margin: 0 0 4px; }
 .case-scroll { overflow-x: auto; overscroll-behavior-x: contain; border-radius: var(--r); border: 1px solid var(--line); background: #000; scrollbar-width: thin; }
 .case-frames { display: grid; min-width: 760px; }
 .case-frames img { grid-area: 1 / 1; display: block; width: 100%; height: auto; opacity: 0; transition: opacity .45s ease; }
+.case-rows { display: none; }
+/* Phones and tablets: show the strip as two rows of three areas (Passageway–Caves, then Swamp–Floating Island),
+   so all six areas and the whole curve fit the screen. The images stay in the page for screen readers. */
+@media (max-width: 900px) {
+  .case-scroll { overflow: visible; border: 0; background: none; }
+  .case-frames { position: absolute; width: 1px; min-width: 0; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }   /* min-width:0 or the 760px strip widens the page */
+  .case-rows { display: grid; gap: 6px; }
+  .case-rows span {
+    display: block; aspect-ratio: 960 / 336; border-radius: var(--r); border: 1px solid var(--line);
+    background: #000 var(--chart) no-repeat; background-size: 200% 100%;
+  }
+  .case-rows span:first-child { background-position: left center; }
+  .case-rows span:last-child { background-position: right center; }
+  .case-strip[data-view="route"]     { --chart: url("img/cu-layout.jpg"); }
+  .case-strip[data-view="intensity"] { --chart: url("img/cu-intensity.jpg"); }
+  .case-strip[data-view="combat"]    { --chart: url("img/cu-combat.jpg"); }
+  .case-tabs button { padding: 0 10px; }   /* "Combat pacing" stays on one line */
+}
 .case-strip figcaption { display: grid; margin-top: 14px; color: #ddd6e6; font-size: var(--fs-small); max-width: 70ch; }
 .cs-cap { grid-area: 1 / 1; opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility .35s; }
 .case-strip[data-view="route"] .cs-route,
