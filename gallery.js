@@ -146,7 +146,7 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
   ui.setAttribute('aria-modal', 'true');
   ui.setAttribute('aria-label', 'All work gallery');
   ui.innerHTML = `
-    <button class="g-back" type="button"><span aria-hidden="true">←</span> Exit gallery</button>
+    <button class="g-back" type="button"><span class="ico ico-left" aria-hidden="true"></span> Exit gallery</button>
     <div class="g-count" aria-hidden="true"><b>01</b> / ${String(N).padStart(2, '0')}</div>
     <p class="sr-only g-status" aria-live="polite"></p>
     <div class="g-bottom">
@@ -155,9 +155,9 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
         <p class="g-role"></p>
       </div>
       <div class="g-controls">
-        <button class="g-arrow g-prev" type="button" aria-label="Previous piece">←</button>
-        <a class="btn primary g-openbtn" target="_blank" rel="noopener">View project ↗</a>
-        <button class="g-arrow g-next" type="button" aria-label="Next piece">→</button>
+        <button class="g-arrow g-prev" type="button" aria-label="Previous piece"><span class="ico ico-left" aria-hidden="true"></span></button>
+        <a class="btn primary g-openbtn" target="_blank" rel="noopener"><span class="g-openlabel">View project</span> <span class="ico ico-out" aria-hidden="true"></span></a>
+        <button class="g-arrow g-next" type="button" aria-label="Next piece"><span class="ico ico-right" aria-hidden="true"></span></button>
       </div>
       <div class="g-ticks">${items.map((it, i) => `<button type="button" aria-label="Show ${it.title}" data-i="${i}"></button>`).join('')}</div>
       <p class="g-hint">Drag, scroll or use the arrow keys · Esc to exit</p>
@@ -182,7 +182,7 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
     $('.g-title').textContent = it.title;
     $('.g-role').textContent = `${it.kind} · ${it.role}`;   // kind folded into the role line (no label above the title)
     $('.g-openbtn').href = it.url;
-    $('.g-openbtn').textContent = it.kind === 'Breakdown' ? 'Read breakdown ↗' : 'View project ↗';
+    $('.g-openlabel').textContent = it.kind === 'Breakdown' ? 'Read breakdown' : 'View project';
     $('.g-count b').textContent = String(i + 1).padStart(2, '0');
     $('.g-status').textContent = `${it.title}, ${i + 1} of ${N}`;   // what screen readers hear on each move
     ticks.forEach((t, k) => t.classList.toggle('on', k === i));

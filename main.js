@@ -1,13 +1,12 @@
 import * as THREE from './vendor/three.module.min.js';
-import { createGallery } from './gallery.js';
-import { createUndead } from './undead.js';
+import { createGallery } from './gallery.js?v=10';
+import { createUndead } from './undead.js?v=10';
 
 /* ============================================================
    Projects and breakdowns live in index.html (so they show even if this
    script fails to load). Their data is read back here for the 3D gallery.
    ============================================================ */
-// 640px copies in img/sm/ for thumbnails and previews; the full images are for large views
-const small = src => src.replace('img/', 'img/sm/');
+// Breakdown rows show the 640px copy in img/sm/; the gallery uses the full image in img/
 const full = src => src.replace('img/sm/', 'img/');
 const text = (el, sel) => el.querySelector(sel)?.firstChild?.textContent.trim() ?? '';
 
@@ -24,36 +23,6 @@ const BREAKDOWNS = [...document.querySelectorAll('#bdList .bd-link')].map(a => (
   url: a.href,
 }));
 
-// Image preview that follows the cursor over the breakdown list (desktop only)
-(() => {
-  const float = document.getElementById('bdFloat');
-  const img = float.querySelector('img');
-  if (!matchMedia('(hover: hover) and (pointer: fine) and (min-width: 901px)').matches) return;
-  // preload the small previews once the list is near, not on page load
-  new IntersectionObserver((entries, io) => {
-    if (!entries.some(e => e.isIntersecting)) return;
-    BREAKDOWNS.forEach(b => { const p = new Image(); p.src = small(b.img); });
-    io.disconnect();
-  }, { rootMargin: '600px 0px' }).observe(document.getElementById('bdList'));
-  const pos = { x: 0, y: 0, tx: 0, ty: 0 };
-  let active = false, running = false;
-  document.querySelectorAll('.bd-link').forEach(a => {
-    a.addEventListener('pointerenter', e => {
-      img.src = a.dataset.img;
-      if (!active) { pos.x = pos.tx = e.clientX; pos.y = pos.ty = e.clientY; }
-      active = true; float.classList.add('on');
-      if (!running) { running = true; requestAnimationFrame(move); }
-    });
-    a.addEventListener('pointerleave', () => { active = false; float.classList.remove('on'); });
-  });
-  addEventListener('pointermove', e => { pos.tx = e.clientX + 190; pos.ty = e.clientY; }, { passive: true });
-  // follows the cursor only while the preview is showing, so it costs nothing elsewhere on the page
-  function move() {
-    pos.x += (pos.tx - pos.x) * 0.16; pos.y += (pos.ty - pos.y) * 0.16;
-    float.style.transform = `translate(${pos.x}px, ${pos.y}px) translate(-50%, -50%) scale(${active ? 1 : 0.85})`;
-    if (active) requestAnimationFrame(move); else running = false;
-  }
-})();
 
 /* ============================================================
    Contact email: change the two parts here to use a different address.
@@ -801,7 +770,7 @@ requestAnimationFrame(frame);
 })();
 
 /* ============================================================
-   Intro, reveals, cursor
+   Intro and reveals
    ============================================================ */
 loaderFill.style.width = '100%';
 const gsap = window.gsap;
@@ -824,14 +793,3 @@ if (gsap && window.ScrollTrigger && !reduceMotion) {
   });
 }
 
-const cursor = document.getElementById('cursor');
-if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
-  const c = { x: innerWidth / 2, y: innerHeight / 2, tx: innerWidth / 2, ty: innerHeight / 2 };
-  addEventListener('pointermove', e => { c.tx = e.clientX; c.ty = e.clientY; });
-  (function follow() {
-    c.x += (c.tx - c.x) * 0.2; c.y += (c.ty - c.y) * 0.2;
-    cursor.style.transform = `translate(${c.x}px, ${c.y}px)`;
-    requestAnimationFrame(follow);
-  })();
-  document.addEventListener('pointerover', e => cursor.classList.toggle('big', !!e.target.closest('a')));
-}

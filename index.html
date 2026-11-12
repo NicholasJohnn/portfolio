@@ -46,7 +46,7 @@
     document.documentElement.classList.add('js');
     setTimeout(function () { var l = document.getElementById('loader'); if (l) l.classList.add('done'); }, 5000);
   </script>
-  <link rel="stylesheet" href="style.css?v=9">
+  <link rel="stylesheet" href="style.css?v=10">
 </head>
 <body>
   <!-- 3D world behind everything -->
@@ -66,7 +66,7 @@
       <a href="#work">Work</a>
       <a href="#breakdowns">Breakdowns</a>
       <a href="#about">About</a>
-      <a href="https://accidentalmallu.itch.io/" target="_blank" rel="noopener">Games <span aria-hidden="true">↗</span></a>
+      <a href="https://accidentalmallu.itch.io/" target="_blank" rel="noopener">Games <span class="ico ico-out" aria-hidden="true"></span></a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -82,10 +82,10 @@
         <div class="hero-intro">
           <p class="hero-sub reveal"><strong>Level designer in Vancouver.</strong> I build worlds players want to explore, from first whitebox to final lighting.</p>
           <div class="hero-cta btns reveal">
-            <a class="btn primary" href="#work">View my work <span aria-hidden="true">→</span></a>
+            <a class="btn primary" href="#work">View my work <span class="ico ico-right" aria-hidden="true"></span></a>
             <a class="btn g-only" href="#work" data-gallery>Enter the 3D gallery</a>
           </div>
-          <div class="scroll-hint reveal"><span></span>Scroll to explore</div>
+          <div class="scroll-hint reveal">Scroll to explore</div>
         </div>
         <!-- First-screen work: each tile scrolls to that project further down the page -->
         <ul class="hero-work reveal" aria-label="Selected projects">
@@ -181,7 +181,7 @@
           </figcaption>
         </figure>
 
-        <p class="case-note">A five-week solo project in UEFN. After the first alpha I sent it out for playtesting and collected notes on platforming feel, narrative and combat. <a href="https://www.artstation.com/blogs/nicholasjohn/1ZGeW/core-undead" target="_blank" rel="noopener">Read the full breakdown <span aria-hidden="true">↗</span></a></p>
+        <p class="case-note">A five-week solo project in UEFN. After the first alpha I sent it out for playtesting and collected notes on platforming feel, narrative and combat. <a href="https://www.artstation.com/blogs/nicholasjohn/1ZGeW/core-undead" target="_blank" rel="noopener">Read the full breakdown <span class="ico ico-out" aria-hidden="true"></span></a></p>
       </div>
     </section>
 
@@ -190,7 +190,7 @@
       <div class="projects-head reveal">
         <div class="head-row">
           <h2>Projects</h2>
-          <a class="btn g-only" href="#work" data-gallery>Open in the gallery <span aria-hidden="true">→</span></a>
+          <a class="btn g-only" href="#work" data-gallery>Open in the gallery <span class="ico ico-right" aria-hidden="true"></span></a>
         </div>
       </div>
       <!-- Projects: edit or add cards here. The 3D gallery reads its list from these cards. -->
@@ -202,7 +202,6 @@
             <p class="proj-role">Action RPG / Hack and Slash · Level Design, Set Dressing, Lighting</p>
             <p>A souls-like action-RPG level built with my team at KPU, plus a custom outline post-process shader.</p>
           </div>
-          <span class="proj-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11L11 3M5 3h6v6"/></svg></span>
         </a>
         <a class="proj reveal" id="p-skypiea" href="https://www.artstation.com/artwork/VJ6nWX" target="_blank" rel="noopener">
           <div class="proj-img"><img src="img/skypiea.jpg" alt="" loading="lazy" decoding="async" width="1600" height="900"></div>
@@ -211,7 +210,6 @@
             <p class="proj-role">Platformer · Level Design · Unreal Engine 4</p>
             <p>A floating-island level with wind tunnels, Blueprint puzzles and hidden boss fights that reward exploration.</p>
           </div>
-          <span class="proj-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11L11 3M5 3h6v6"/></svg></span>
         </a>
         <a class="proj reveal" id="p-dragonwing" href="https://www.artstation.com/artwork/lDWJBa" target="_blank" rel="noopener">
           <div class="proj-img"><img src="img/dragonwing.jpg" alt="" loading="lazy" decoding="async" width="1600" height="900"></div>
@@ -220,7 +218,6 @@
             <p class="proj-role">Platformer · Level Design · Lighting · Unreal Engine 4</p>
             <p>A snowy night-time village that turns a small map into a long, rewarding route by building upward.</p>
           </div>
-          <span class="proj-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11L11 3M5 3h6v6"/></svg></span>
         </a>
         <a class="proj reveal" id="p-retrovirus" href="https://www.artstation.com/artwork/6N6YwW" target="_blank" rel="noopener">
           <div class="proj-img"><img src="img/retrovirus.jpg" alt="" loading="lazy" decoding="async" width="1600" height="900"></div>
@@ -229,7 +226,6 @@
             <p class="proj-role">2D Puzzle Platformer · Level &amp; Puzzle Design · Unity</p>
             <p>Play a virus fighting its way to the cell's nucleus. Built in two weeks for the Rapid Prototyping course at the Centre for Entertainment Arts.</p>
           </div>
-          <span class="proj-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11L11 3M5 3h6v6"/></svg></span>
         </a>
       </div>
     </section>
@@ -239,7 +235,7 @@
       <div class="projects-head reveal">
         <div class="head-row">
           <h2>Breakdowns</h2>
-          <a class="btn g-only" href="#breakdowns" data-gallery="breakdowns">Open in the gallery <span aria-hidden="true">→</span></a>
+          <a class="btn g-only" href="#breakdowns" data-gallery="breakdowns">Open in the gallery <span class="ico ico-right" aria-hidden="true"></span></a>
         </div>
         <p class="lede">How each level was planned and built: references, metrics gyms, layouts, intensity charts and combat pacing.</p>
       </div>
@@ -254,7 +250,6 @@
               <div class="bd-tags"><span>Metrics</span><span>Combat spaces</span><span>Intensity chart</span></div>
             </div>
             <span class="bd-date">Dec 2024</span>
-            <span class="bd-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span>
           </a>
         </li>
         <li class="bd-item reveal">
@@ -266,7 +261,6 @@
               <div class="bd-tags"><span>2D layout</span><span>Level flow</span><span>Verticality</span></div>
             </div>
             <span class="bd-date">Feb 2024</span>
-            <span class="bd-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span>
           </a>
         </li>
         <li class="bd-item reveal">
@@ -278,7 +272,6 @@
               <div class="bd-tags"><span>Level types</span><span>Pacing</span><span>References</span></div>
             </div>
             <span class="bd-date">Feb 2024</span>
-            <span class="bd-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span>
           </a>
         </li>
         <li class="bd-item reveal">
@@ -290,11 +283,9 @@
               <div class="bd-tags"><span>Set dressing</span><span>Platforming</span><span>Narrative pacing</span></div>
             </div>
             <span class="bd-date">Feb 2024</span>
-            <span class="bd-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span>
           </a>
         </li>
       </ol>
-      <div class="bd-float" id="bdFloat" aria-hidden="true"><img alt=""></div>
     </section>
 
     <!-- CONTACT -->
@@ -321,12 +312,11 @@
     </section>
   </main>
 
-  <div class="cursor" id="cursor" aria-hidden="true"></div>
 
-  <script src="case.js?v=9"></script>
+  <script src="case.js?v=10"></script>
   <script src="vendor/gsap.min.js"></script>
   <script src="vendor/ScrollTrigger.min.js"></script>
   <!-- Bump ?v= on these when the files change, so browsers never mix a new page with an old cached script -->
-  <script type="module" src="main.js?v=9"></script>
+  <script type="module" src="main.js?v=10"></script>
 </body>
 </html>
