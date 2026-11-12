@@ -663,7 +663,6 @@ requestAnimationFrame(frame);
   const sections = [
     document.querySelector('.hero'),
     document.querySelector('.about'),
-    document.querySelector('.exp'),
     document.querySelector('.featured'),
   ];
   const root = document.documentElement;
@@ -757,7 +756,7 @@ requestAnimationFrame(frame);
 
   // In-page links (menu, logo) glide to their section; intro sections land on their checkpoint.
   // Gallery buttons (data-gallery) are handled separately and open the 3D gallery instead.
-  const checkpointOf = { '#top': 0, '#about': 1, '#work': 3 };
+  const checkpointOf = { '#top': 0, '#about': 1, '#work': 2 };
   document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
     const href = a.getAttribute('href');
     if (a.hasAttribute('data-gallery') || href === '#') return;
