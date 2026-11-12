@@ -792,7 +792,9 @@ setTimeout(() => {
 
 if (gsap && window.ScrollTrigger && !reduceMotion) {
   gsap.registerPlugin(window.ScrollTrigger);
-  gsap.utils.toArray('.reveal').forEach(el => {
+  // Hero items are on screen from the start, so they fade in on load instead of waiting for a scroll trigger
+  gsap.from('.hero .reveal', { y: 30, opacity: 0, duration: 1.1, ease: 'power3.out', stagger: 0.1, delay: 0.5 });
+  gsap.utils.toArray('.reveal').filter(el => !el.closest('.hero')).forEach(el => {
     gsap.from(el, {
       y: 46, opacity: 0, duration: 1.1, ease: 'power3.out',
       scrollTrigger: { trigger: el, start: 'top 88%' },
