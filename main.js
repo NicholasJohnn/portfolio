@@ -1,5 +1,6 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 import { createGallery } from './gallery.js';
+import { createUndead } from './undead.js';
 
 /* ============================================================
    Project data: edit this list to add or change projects.
@@ -461,6 +462,12 @@ const embers = new THREE.Points(emberGeo, new THREE.PointsMaterial({
   color: 0xffa060, size: 0.14, transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false,
 }));
 scene.add(embers);
+
+/* ---------- undead on their way to the Core (undead.js) ---------- */
+createUndead({
+  scene, islands: islandMeshes.slice(0, ISLANDS.length), stones: islandMeshes.slice(ISLANDS.length),
+  islandDefs: ISLANDS, core, lowPower, reduceMotion,
+});
 
 loaderFill.style.width = '75%';
 
