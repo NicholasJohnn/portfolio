@@ -664,7 +664,7 @@ requestAnimationFrame(frame);
     document.querySelector('.hero'),
     document.querySelector('.about'),
     document.querySelector('.featured'),
-  ];
+  ].filter(Boolean);   // a missing section (e.g. a cached old page) is skipped, not a crash
   const root = document.documentElement;
   const maxY = () => root.scrollHeight - innerHeight;
   // Where each checkpoint sits: the hero at the very top, the others centred in the viewport
