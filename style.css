@@ -272,12 +272,14 @@ h3 { font: 600 20px/1.3 var(--sans); margin: 0 0 4px; }
 .proj:hover .proj-img img { transform: scale(1.07); filter: saturate(1.05) brightness(1); }
 .proj-body { padding: 20px 22px 22px; }
 .proj-body h3 { font: 700 21px/1.25 var(--serif); margin: 0 0 6px; }
-.proj-role { color: var(--accent); font-size: var(--fs-meta); line-height: 1.5; margin: 0 0 10px; letter-spacing: .02em; }
+.proj-body .proj-role { color: var(--accent); font-size: var(--fs-meta); line-height: 1.5; margin: 0 0 10px; letter-spacing: .02em; }
 .proj-body p { margin: 0; color: #cfc8d9; font-size: var(--fs-small); max-width: 62ch; }
+.proj-body .proj-meta { margin: 0 0 6px; color: var(--muted); font-size: var(--fs-meta); font-variant-numeric: tabular-nums; }   /* year · team or solo · length */
+.proj-body .proj-did { margin-top: 10px; color: #ddd6e6; }   /* what he owned on the project */
+.proj-body .proj-did strong { color: var(--ink); font-weight: 600; }
 /* "View on ArtStation ↗": says the card or row leaves the site */
 .ext-label { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: var(--fs-meta); color: var(--muted); transition: color .25s; }
 .proj:hover .ext-label, .bd-link:hover .ext-label { color: var(--accent); }
-.badge { display: inline-block; font: 500 var(--fs-label)/1 var(--sans); letter-spacing: .12em; vertical-align: .2em; text-transform: uppercase; color: var(--muted); margin-left: 8px; }
 
 /* ---------- breakdowns ---------- */
 .breakdowns { padding-top: 6vh; padding-bottom: 16vh; background: rgba(11,9,18,.92); }
