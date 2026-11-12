@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Nicholas John">
   <meta property="og:title" content="Nicholas John · Level Designer">
-  <meta property="og:description" content="Level designer in Vancouver building worlds in UEFN, Unreal and Unity. From first whitebox to final lighting.">
+  <meta property="og:description" content="Level designer in Vancouver building worlds in UEFN, Unreal and Unity. From layout to final lighting.">
   <meta property="og:url" content="https://nicholasjohn-portfolio.com/">
   <meta property="og:image" content="https://cdna.artstation.com/p/assets/images/images/083/726/990/large/nicholas-john-screenshot04.jpg?1736643101">
   <meta property="og:image:alt" content="CoreUndead: a player faces the glowing Core across the level">
@@ -46,7 +46,7 @@
     document.documentElement.classList.add('js');
     setTimeout(function () { var l = document.getElementById('loader'); if (l) l.classList.add('done'); }, 5000);
   </script>
-  <link rel="stylesheet" href="style.css?v=16">
+  <link rel="stylesheet" href="style.css?v=17">
 </head>
 <body>
   <!-- 3D world behind everything -->
@@ -65,10 +65,10 @@
     <!-- Menu follows the page order. Items marked nav-wide are hidden on phones (reached by scrolling or from Contact). -->
     <nav aria-label="Sections">
       <a class="nav-wide" href="#about">About</a>
-      <a href="#work">Work</a>
+      <a href="#work">CoreUndead</a>
       <a href="#projects">Projects</a>
       <a class="nav-wide" href="#breakdowns">Breakdowns</a>
-      <a class="nav-wide nav-games" href="https://accidentalmallu.itch.io/" target="_blank" rel="noopener">Games <span class="ico ico-out" aria-hidden="true"></span></a>
+      <a class="nav-wide nav-games" href="https://accidentalmallu.itch.io/" target="_blank" rel="noopener">Games <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -82,7 +82,7 @@
       </h1>
       <div class="hero-foot">
         <div class="hero-intro">
-          <p class="hero-sub reveal"><strong>Level designer in Vancouver.</strong> I lead players with landmarks, light and sightlines, from first whitebox to final lighting.</p>
+          <p class="hero-sub reveal"><strong>Level designer in Vancouver.</strong> I lead players with landmarks, light and sightlines, from layout to final lighting.</p>
           <div class="hero-cta btns reveal">
             <a class="btn primary" href="#work">View my work <span class="ico ico-right" aria-hidden="true"></span></a>
             <a class="btn g-only" href="#work" data-gallery>Enter the 3D gallery</a>
@@ -143,9 +143,9 @@
             <li>Unique "special trees" act as landmarks so players never lose their bearings</li>
           </ul>
           <div class="btns">
-            <a class="btn primary" href="https://www.artstation.com/artwork/DLE6En" target="_blank" rel="noopener">View project</a>
-            <a class="btn" href="https://www.fortnite.com/@accidentalmallu/9981-8767-7616" target="_blank" rel="noopener">Play in Fortnite</a>
-            <a class="btn ghost" href="https://www.artstation.com/blogs/nicholasjohn/1ZGeW/core-undead" target="_blank" rel="noopener">Read breakdown</a>
+            <a class="btn primary" href="https://www.artstation.com/artwork/DLE6En" target="_blank" rel="noopener">View project <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="btn" href="https://www.fortnite.com/@accidentalmallu/9981-8767-7616" target="_blank" rel="noopener">Play in Fortnite <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="btn ghost" href="https://www.artstation.com/blogs/nicholasjohn/1ZGeW/core-undead" target="_blank" rel="noopener">Read breakdown <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></a>
           </div>
         </div>
       </div>
@@ -174,9 +174,23 @@
                 alt="Intensity chart: low through the Passageway and Garden, rising through the Caves to a peak in the Swamp, dipping in the House, and climbing again at the Floating Island.">
               <img class="cs-combat" aria-hidden="true" src="img/cu-combat.jpg" width="1920" height="336" loading="lazy" decoding="async"
                 alt="Combat pacing chart: flat through the Passageway and Garden, a spike in the Caves, a low in the Swamp, then high from the House to the Floating Island.">
+              <i class="case-scale" aria-hidden="true"><b>High</b><b>Low</b></i>
             </div>
-            <!-- Phones: the same chart split into two rows of three areas, so the whole curve fits without scrolling -->
-            <div class="case-rows" aria-hidden="true"><span></span><span></span></div>
+            <!-- Area names as text (the images are cropped above their baked-in labels) -->
+            <ol class="case-labels case-labels-full" aria-hidden="true">
+              <li>Passageway</li><li>Garden</li><li>Caves</li><li>Swamp</li><li>House</li><li>Floating Island</li>
+            </ol>
+            <!-- Phones and tablets: the same chart split into two rows of three areas, so the whole curve fits without scrolling -->
+            <div class="case-rows" aria-hidden="true">
+              <div class="case-row">
+                <span class="case-img"><i class="case-scale"><b>High</b><b>Low</b></i></span>
+                <ol class="case-labels"><li>Passageway</li><li>Garden</li><li>Caves</li></ol>
+              </div>
+              <div class="case-row">
+                <span class="case-img"><i class="case-scale"><b>High</b><b>Low</b></i></span>
+                <ol class="case-labels"><li>Swamp</li><li>House</li><li>Floating Island</li></ol>
+              </div>
+            </div>
           </div>
           <figcaption>
             <div class="cs-cap cs-route">Six points of interest in a straight line, from the Passageway to the Floating Island, with secret areas off the main path.</div>
@@ -191,7 +205,7 @@
           </figcaption>
         </figure>
 
-        <p class="case-note">A five-week solo project in UEFN. After the first alpha I sent it out for playtesting and collected notes on platforming feel, narrative and combat. <a href="https://www.artstation.com/blogs/nicholasjohn/1ZGeW/core-undead" target="_blank" rel="noopener">Read the full breakdown <span class="ico ico-out" aria-hidden="true"></span></a></p>
+        <p class="case-note">A five-week solo project in UEFN. After the first alpha I sent it out for playtesting and collected notes on platforming feel, narrative and combat. <a href="https://www.artstation.com/blogs/nicholasjohn/1ZGeW/core-undead" target="_blank" rel="noopener">Read the full breakdown <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></a></p>
       </div>
     </section>
 
@@ -212,6 +226,7 @@
             <h3>Cursebreaker: Bringer of Death <span class="badge">Team project</span></h3>
             <p class="proj-role">Action RPG / Hack and Slash · Level Design, Set Dressing, Lighting</p>
             <p>A souls-like action-RPG level built with my team at KPU, plus a custom outline post-process shader.</p>
+            <span class="ext-label">View on ArtStation <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></span>
           </div>
         </a>
         <a class="proj reveal" id="p-skypiea" href="https://www.artstation.com/artwork/VJ6nWX" target="_blank" rel="noopener">
@@ -220,6 +235,7 @@
             <h3>Spark: Skypiea Island</h3>
             <p class="proj-role">Platformer · Level Design · Unreal Engine 4</p>
             <p>A floating-island level with wind tunnels, Blueprint puzzles and hidden boss fights that reward exploration.</p>
+            <span class="ext-label">View on ArtStation <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></span>
           </div>
         </a>
         <a class="proj reveal" id="p-dragonwing" href="https://www.artstation.com/artwork/lDWJBa" target="_blank" rel="noopener">
@@ -228,6 +244,7 @@
             <h3>Spark: DragonWing</h3>
             <p class="proj-role">Platformer · Level Design · Lighting · Unreal Engine 4</p>
             <p>A snowy night-time village that turns a small map into a long, rewarding route by building upward.</p>
+            <span class="ext-label">View on ArtStation <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></span>
           </div>
         </a>
         <a class="proj reveal" id="p-retrovirus" href="https://www.artstation.com/artwork/6N6YwW" target="_blank" rel="noopener">
@@ -236,6 +253,7 @@
             <h3>Retrovirus <span class="badge">Team project</span></h3>
             <p class="proj-role">2D Puzzle Platformer · Level &amp; Puzzle Design · Unity</p>
             <p>Play a virus fighting its way to the cell's nucleus. Built in two weeks for the Rapid Prototyping course at the Centre for Entertainment Arts.</p>
+            <span class="ext-label">View on ArtStation <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></span>
           </div>
         </a>
       </div>
@@ -259,6 +277,7 @@
             <div>
               <p class="bd-sum">From the first design doc to a published island: metrics gym, combat spaces, hidden areas, intensity chart and combat pacing.</p>
               <div class="bd-tags"><span>Metrics</span><span>Combat spaces</span><span>Intensity chart</span></div>
+              <span class="ext-label">Read on ArtStation <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></span>
             </div>
             <span class="bd-date">Dec 2024</span>
           </a>
@@ -270,6 +289,7 @@
             <div>
               <p class="bd-sum">Turning a small map into a long level by building upward: 2D layout, level flow and an island-by-island intensity chart.</p>
               <div class="bd-tags"><span>2D layout</span><span>Level flow</span><span>Verticality</span></div>
+              <span class="ext-label">Read on ArtStation <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></span>
             </div>
             <span class="bd-date">Feb 2024</span>
           </a>
@@ -281,6 +301,7 @@
             <div>
               <p class="bd-sum">A Hades-inspired shooter split into corridor, arena and boss levels, with layout, intensity and combat pacing charts.</p>
               <div class="bd-tags"><span>Level types</span><span>Pacing</span><span>References</span></div>
+              <span class="ext-label">Read on ArtStation <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></span>
             </div>
             <span class="bd-date">Feb 2024</span>
           </a>
@@ -292,6 +313,7 @@
             <div>
               <p class="bd-sum">A 10-week team project: references, metrics, combat and platforming spaces, set dressing, and narrative and combat pacing.</p>
               <div class="bd-tags"><span>Set dressing</span><span>Platforming</span><span>Narrative pacing</span></div>
+              <span class="ext-label">Read on ArtStation <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></span>
             </div>
             <span class="bd-date">Feb 2024</span>
           </a>
@@ -307,7 +329,7 @@
         <div class="btns center">
           <!-- The email address is assembled in main.js (CONTACT_EMAIL) so spam bots can't read it from the HTML -->
           <a class="btn primary js-email" href="https://www.artstation.com/nicholasjohn" target="_blank" rel="noopener">Get in touch</a>
-          <a class="btn" href="https://nicholasjohn.artstation.com/resume" target="_blank" rel="noopener">Resume</a>
+          <a class="btn" href="https://nicholasjohn.artstation.com/resume" target="_blank" rel="noopener">Resume <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></a>
         </div>
         <button class="email-line" id="emailLine" type="button" hidden>
           <span id="emailText"></span><span class="email-copy" id="emailCopy" aria-live="polite">Copy</span>
@@ -324,11 +346,11 @@
   </main>
 
 
-  <script src="case.js?v=16"></script>
-  <script src="nav.js?v=16"></script>
+  <script src="case.js?v=17"></script>
+  <script src="nav.js?v=17"></script>
   <script src="vendor/gsap.min.js"></script>
   <script src="vendor/ScrollTrigger.min.js"></script>
   <!-- Bump ?v= on these when the files change, so browsers never mix a new page with an old cached script -->
-  <script type="module" src="main.js?v=16"></script>
+  <script type="module" src="main.js?v=17"></script>
 </body>
 </html>
