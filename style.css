@@ -84,6 +84,7 @@ body.g-open::after { opacity: 0; }
 .nav nav { display: flex; gap: clamp(14px, 3vw, 36px); }
 .nav nav a { padding: 14px 0; text-decoration: none; font-size: var(--fs-meta); letter-spacing: .14em; text-transform: uppercase; opacity: .85; white-space: nowrap; }
 .nav nav a:hover { opacity: 1; }
+.nav nav a[aria-current] { opacity: 1; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 7px; }   /* the section you're in */
 
 /* ---------- shared ---------- */
 section { position: relative; padding: 0 var(--pad); }
@@ -409,8 +410,11 @@ body.g-hovering { cursor: pointer; }
   .grid { grid-template-columns: 1fr; }
 }
 .nav { gap: 24px; }
+@media (max-width: 1000px) {
+  .nav nav a.nav-games { display: none; }   /* tablets: itch.io stays linked from Contact */
+}
 @media (max-width: 760px) {
-  .nav nav a:nth-child(2), .nav nav a:nth-child(3) { display: none; }   /* Breakdowns and About are reached by scrolling */
+  .nav nav a.nav-wide { display: none; }   /* phones: Work, Projects, Contact; the rest is reached by scrolling or from Contact */
 }
 @media (max-width: 520px) {
   .nav { gap: 16px; }
@@ -422,7 +426,7 @@ body.g-hovering { cursor: pointer; }
   .contact { padding-bottom: max(14vh, calc(64px + env(safe-area-inset-bottom))); }
 }
 @media (max-width: 360px) {
-  .nav nav a:nth-child(4) { display: none; }   /* Games stays reachable from Contact's itch.io link */
+  .nav nav a[href="#projects"] { display: none; }   /* smallest phones: Work and Contact only */
 }
 
 @media (prefers-reduced-motion: reduce) {
