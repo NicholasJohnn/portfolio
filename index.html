@@ -39,6 +39,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="modulepreload" href="vendor/three.module.min.js">
+  <!-- Failsafe: the loading screen only shows when JavaScript runs, and clears itself
+       after 5 seconds even if the 3D scripts fail, so the page is never stuck on black. -->
+  <script>
+    document.documentElement.classList.add('js');
+    setTimeout(function () { var l = document.getElementById('loader'); if (l) l.classList.add('done'); }, 5000);
+  </script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -157,7 +164,45 @@
           <a class="btn g-only" href="#work" data-gallery>Open in the gallery <span aria-hidden="true">→</span></a>
         </div>
       </div>
-      <div class="grid" id="grid"></div>
+      <!-- Projects: edit or add cards here. The 3D gallery reads its list from these cards. -->
+      <div class="grid" id="grid">
+        <a class="proj reveal" href="https://www.artstation.com/artwork/6N6YwW" target="_blank" rel="noopener">
+          <div class="proj-img"><img src="img/retrovirus.jpg" alt="" loading="lazy" decoding="async" width="1600" height="900"></div>
+          <div class="proj-body">
+            <h3>Retrovirus <span class="badge">Team project</span></h3>
+            <p class="proj-role">2D Puzzle Platformer · Level &amp; Puzzle Design · Unity</p>
+            <p>Play a virus fighting its way to the cell's nucleus. Built in two weeks for the Rapid Prototyping course at the Centre for Entertainment Arts.</p>
+          </div>
+          <span class="proj-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11L11 3M5 3h6v6"/></svg></span>
+        </a>
+        <a class="proj reveal" href="https://www.artstation.com/artwork/VJ6nWX" target="_blank" rel="noopener">
+          <div class="proj-img"><img src="img/skypiea.jpg" alt="" loading="lazy" decoding="async" width="1600" height="900"></div>
+          <div class="proj-body">
+            <h3>Spark: Skypiea Island</h3>
+            <p class="proj-role">Platformer · Level Design · Unreal Engine 4</p>
+            <p>A floating-island level with wind tunnels, Blueprint puzzles and hidden boss fights that reward exploration.</p>
+          </div>
+          <span class="proj-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11L11 3M5 3h6v6"/></svg></span>
+        </a>
+        <a class="proj reveal" href="https://www.artstation.com/artwork/lDWJBa" target="_blank" rel="noopener">
+          <div class="proj-img"><img src="img/dragonwing.jpg" alt="" loading="lazy" decoding="async" width="1600" height="900"></div>
+          <div class="proj-body">
+            <h3>Spark: DragonWing</h3>
+            <p class="proj-role">Platformer · Level Design · Lighting · Unreal Engine 4</p>
+            <p>A snowy night-time village that turns a small map into a long, rewarding route by building upward.</p>
+          </div>
+          <span class="proj-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11L11 3M5 3h6v6"/></svg></span>
+        </a>
+        <a class="proj reveal" href="https://www.artstation.com/artwork/GeyrK3" target="_blank" rel="noopener">
+          <div class="proj-img"><img src="img/bringer.jpg" alt="" loading="lazy" decoding="async" width="1600" height="900"></div>
+          <div class="proj-body">
+            <h3>Cursebreaker: Bringer of Death <span class="badge">Team project</span></h3>
+            <p class="proj-role">Action RPG / Hack and Slash · Level Design, Set Dressing, Lighting</p>
+            <p>A souls-like action-RPG level built with my team at KPU, plus a custom outline post-process shader.</p>
+          </div>
+          <span class="proj-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11L11 3M5 3h6v6"/></svg></span>
+        </a>
+      </div>
     </section>
 
     <!-- BREAKDOWNS -->
@@ -169,7 +214,57 @@
         </div>
         <p class="lede">How each level was planned and built: references, metrics gyms, layouts, intensity charts and combat pacing.</p>
       </div>
-      <ol class="bd-list" id="bdList"></ol>
+      <!-- Breakdowns: edit or add rows here. data-img is the small preview; the gallery uses the full-size copy in img/. -->
+      <ol class="bd-list" id="bdList">
+        <li class="bd-item reveal">
+          <a class="bd-link" href="https://www.artstation.com/blogs/nicholasjohn/1ZGeW" target="_blank" rel="noopener" data-img="img/sm/bd-coreundead.jpg">
+            <div class="bd-thumb"><img src="img/sm/bd-coreundead.jpg" alt="" loading="lazy" decoding="async" width="640" height="400"></div>
+            <div><h3 class="bd-title">CoreUndead</h3><span class="bd-sub">Game &amp; Level Design · UEFN</span></div>
+            <div>
+              <p class="bd-sum">From the first design doc to a published island: metrics gym, combat spaces, hidden areas, intensity chart and combat pacing.</p>
+              <div class="bd-tags"><span>Metrics</span><span>Combat spaces</span><span>Intensity chart</span></div>
+            </div>
+            <span class="bd-date">Dec 2024</span>
+            <span class="bd-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span>
+          </a>
+        </li>
+        <li class="bd-item reveal">
+          <a class="bd-link" href="https://www.artstation.com/blogs/nicholasjohn/wBBoR" target="_blank" rel="noopener" data-img="img/sm/bd-dragonwing.jpg">
+            <div class="bd-thumb"><img src="img/sm/bd-dragonwing.jpg" alt="" loading="lazy" decoding="async" width="640" height="400"></div>
+            <div><h3 class="bd-title">Spark: DragonWing</h3><span class="bd-sub">Level Design · Unreal Engine 4</span></div>
+            <div>
+              <p class="bd-sum">Turning a small map into a long level by building upward: 2D layout, level flow and an island-by-island intensity chart.</p>
+              <div class="bd-tags"><span>2D layout</span><span>Level flow</span><span>Verticality</span></div>
+            </div>
+            <span class="bd-date">Feb 2024</span>
+            <span class="bd-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span>
+          </a>
+        </li>
+        <li class="bd-item reveal">
+          <a class="bd-link" href="https://www.artstation.com/blogs/nicholasjohn/y118y" target="_blank" rel="noopener" data-img="img/sm/bd-lockandload.jpg">
+            <div class="bd-thumb"><img src="img/sm/bd-lockandload.jpg" alt="" loading="lazy" decoding="async" width="640" height="400"></div>
+            <div><h3 class="bd-title">Cursebreaker: Lock and Load</h3><span class="bd-sub">Top-down Shooter · Unreal Engine 5</span></div>
+            <div>
+              <p class="bd-sum">A Hades-inspired shooter split into corridor, arena and boss levels, with layout, intensity and combat pacing charts.</p>
+              <div class="bd-tags"><span>Level types</span><span>Pacing</span><span>References</span></div>
+            </div>
+            <span class="bd-date">Feb 2024</span>
+            <span class="bd-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span>
+          </a>
+        </li>
+        <li class="bd-item reveal">
+          <a class="bd-link" href="https://www.artstation.com/blogs/nicholasjohn/3ZZpN" target="_blank" rel="noopener" data-img="img/sm/bd-bringer.jpg">
+            <div class="bd-thumb"><img src="img/sm/bd-bringer.jpg" alt="" loading="lazy" decoding="async" width="640" height="400"></div>
+            <div><h3 class="bd-title">Cursebreaker: Bringer of Death</h3><span class="bd-sub">Action RPG · Team project · UE5</span></div>
+            <div>
+              <p class="bd-sum">A 10-week team project: references, metrics, combat and platforming spaces, set dressing, and narrative and combat pacing.</p>
+              <div class="bd-tags"><span>Set dressing</span><span>Platforming</span><span>Narrative pacing</span></div>
+            </div>
+            <span class="bd-date">Feb 2024</span>
+            <span class="bd-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span>
+          </a>
+        </li>
+      </ol>
       <div class="bd-float" id="bdFloat" aria-hidden="true"><img alt=""></div>
     </section>
 
@@ -199,8 +294,8 @@
 
   <div class="cursor" id="cursor" aria-hidden="true"></div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
   <script type="module" src="main.js"></script>
 </body>
 </html>

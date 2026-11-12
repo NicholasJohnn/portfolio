@@ -1,120 +1,28 @@
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+import * as THREE from './vendor/three.module.min.js';
 import { createGallery } from './gallery.js';
 import { createUndead } from './undead.js';
 
 /* ============================================================
-   Project data: edit this list to add or change projects.
+   Projects and breakdowns live in index.html (so they show even if this
+   script fails to load). Their data is read back here for the 3D gallery.
    ============================================================ */
-const PROJECTS = [
-  {
-    title: 'Retrovirus',
-    role: '2D Puzzle Platformer · Level & Puzzle Design · Unity',
-    text: "Play a virus fighting its way to the cell's nucleus. Built in two weeks for the Rapid Prototyping course at the Centre for Entertainment Arts.",
-    img: 'img/retrovirus.jpg',
-    url: 'https://www.artstation.com/artwork/6N6YwW',
-    badge: 'Team project',
-  },
-  {
-    title: 'Spark: Skypiea Island',
-    role: 'Platformer · Level Design · Unreal Engine 4',
-    text: 'A floating-island level with wind tunnels, Blueprint puzzles and hidden boss fights that reward exploration.',
-    img: 'img/skypiea.jpg',
-    url: 'https://www.artstation.com/artwork/VJ6nWX',
-  },
-  {
-    title: 'Spark: DragonWing',
-    role: 'Platformer · Level Design · Lighting · Unreal Engine 4',
-    text: 'A snowy night-time village that turns a small map into a long, rewarding route by building upward.',
-    img: 'img/dragonwing.jpg',
-    url: 'https://www.artstation.com/artwork/lDWJBa',
-  },
-  {
-    title: 'Cursebreaker: Bringer of Death',
-    role: 'Action RPG / Hack and Slash · Level Design, Set Dressing, Lighting',
-    text: 'A souls-like action-RPG level built with my team at KPU, plus a custom outline post-process shader.',
-    img: 'img/bringer.jpg',
-    url: 'https://www.artstation.com/artwork/GeyrK3',
-    badge: 'Team project',
-  },
-];
-
 // 640px copies in img/sm/ for thumbnails and previews; the full images are for large views
 const small = src => src.replace('img/', 'img/sm/');
+const full = src => src.replace('img/sm/', 'img/');
+const text = (el, sel) => el.querySelector(sel)?.firstChild?.textContent.trim() ?? '';
 
-const grid = document.getElementById('grid');
-grid.innerHTML = PROJECTS.map(p => `
-  <a class="proj reveal" href="${p.url}" target="_blank" rel="noopener">
-    <div class="proj-img"><img src="${p.img}" alt="" loading="lazy" decoding="async" width="1600" height="900"></div>
-    <div class="proj-body">
-      <h3>${p.title}${p.badge ? `<span class="badge">${p.badge}</span>` : ''}</h3>
-      <p class="proj-role">${p.role}</p>
-      <p>${p.text}</p>
-    </div>
-    <span class="proj-arrow" aria-hidden="true">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11L11 3M5 3h6v6"/></svg>
-    </span>
-  </a>`).join('');
-
-/* ============================================================
-   Breakdown posts: edit this list to add or change breakdowns.
-   ============================================================ */
-const BREAKDOWNS = [
-  {
-    title: 'CoreUndead',
-    sub: 'Game & Level Design · UEFN',
-    text: 'From the first design doc to a published island: metrics gym, combat spaces, hidden areas, intensity chart and combat pacing.',
-    tags: ['Metrics', 'Combat spaces', 'Intensity chart'],
-    date: 'Dec 2024',
-    img: 'img/bd-coreundead.jpg',
-    url: 'https://www.artstation.com/blogs/nicholasjohn/1ZGeW',
-  },
-  {
-    title: 'Spark: DragonWing',
-    sub: 'Level Design · Unreal Engine 4',
-    text: 'Turning a small map into a long level by building upward: 2D layout, level flow and an island-by-island intensity chart.',
-    tags: ['2D layout', 'Level flow', 'Verticality'],
-    date: 'Feb 2024',
-    img: 'img/bd-dragonwing.jpg',
-    url: 'https://www.artstation.com/blogs/nicholasjohn/wBBoR',
-  },
-  {
-    title: 'Cursebreaker: Lock and Load',
-    sub: 'Top-down Shooter · Unreal Engine 5',
-    text: 'A Hades-inspired shooter split into corridor, arena and boss levels, with layout, intensity and combat pacing charts.',
-    tags: ['Level types', 'Pacing', 'References'],
-    date: 'Feb 2024',
-    img: 'img/bd-lockandload.jpg',
-    url: 'https://www.artstation.com/blogs/nicholasjohn/y118y',
-  },
-  {
-    title: 'Cursebreaker: Bringer of Death',
-    sub: 'Action RPG · Team project · UE5',
-    text: 'A 10-week team project: references, metrics, combat and platforming spaces, set dressing, and narrative and combat pacing.',
-    tags: ['Set dressing', 'Platforming', 'Narrative pacing'],
-    date: 'Feb 2024',
-    img: 'img/bd-bringer.jpg',
-    url: 'https://www.artstation.com/blogs/nicholasjohn/3ZZpN',
-  },
-];
-
-document.getElementById('bdList').innerHTML = BREAKDOWNS.map(b => `
-  <li class="bd-item reveal">
-    <a class="bd-link" href="${b.url}" target="_blank" rel="noopener" data-img="${small(b.img)}">
-      <div class="bd-thumb"><img src="${small(b.img)}" alt="" loading="lazy" decoding="async" width="640" height="400"></div>
-      <div>
-        <h3 class="bd-title">${b.title}</h3>
-        <span class="bd-sub">${b.sub}</span>
-      </div>
-      <div>
-        <p class="bd-sum">${b.text}</p>
-        <div class="bd-tags">${b.tags.map(t => `<span>${t}</span>`).join('')}</div>
-      </div>
-      <span class="bd-date">${b.date}</span>
-      <span class="bd-arrow" aria-hidden="true">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
-      </span>
-    </a>
-  </li>`).join('');
+const PROJECTS = [...document.querySelectorAll('#grid .proj')].map(a => ({
+  title: text(a, 'h3'),
+  role: text(a, '.proj-role'),
+  img: a.querySelector('img').getAttribute('src'),
+  url: a.href,
+}));
+const BREAKDOWNS = [...document.querySelectorAll('#bdList .bd-link')].map(a => ({
+  title: text(a, '.bd-title'),
+  sub: text(a, '.bd-sub'),
+  img: full(a.dataset.img),
+  url: a.href,
+}));
 
 // Image preview that follows the cursor over the breakdown list (desktop only)
 (() => {
@@ -703,8 +611,10 @@ function runTransition(to, done) {
 const galleryEnabled = true;            // with reduce-motion on, the transition is a crossfade (see `simple`)
 if (reduceMotion) trans.dur = 0.6;
 let pushedState = false;
+let galleryOpener = null;                  // keyboard focus goes back here when the gallery closes
 function openGallery(index = 0) {
   if (gallery.isOpen) return;
+  galleryOpener = document.activeElement;
   document.body.classList.add('g-open');
   document.documentElement.classList.add('g-lock');
   gallery.show(index);
@@ -722,6 +632,8 @@ function finishClose() {
   runTransition(0, () => {
     document.body.classList.remove('g-open');
     document.documentElement.classList.remove('g-lock');
+    if (galleryOpener?.isConnected && galleryOpener !== document.body) galleryOpener.focus({ preventScroll: true });
+    galleryOpener = null;
   });
 }
 addEventListener('popstate', () => { if (gallery.isOpen) { pushedState = false; finishClose(); } });
@@ -769,7 +681,6 @@ requestAnimationFrame(frame);
   const stops = () => sections.map((s, i) => i === 0 ? 0
     : Math.max(0, Math.min(maxY(), Math.round(s.offsetTop + (s.offsetHeight - innerHeight) / 2))));
   const lastStop = () => stops()[sections.length - 1];
-  const nearest = y => { const s = stops(); let best = 0; s.forEach((v, i) => { if (Math.abs(v - y) < Math.abs(s[best] - y)) best = i; }); return best; };
   const locked = () => root.classList.contains('g-lock');            // gallery open
 
   let anim = null;
@@ -851,17 +762,7 @@ requestAnimationFrame(frame);
     touch = null;
   });
 
-  // Scrollbar drags, resizes, etc.: once scrolling settles inside the intro, glide to the nearest checkpoint
-  let idle = 0;
-  addEventListener('scroll', () => {
-    clearTimeout(idle);
-    if (anim || locked()) return;
-    idle = setTimeout(() => {
-      if (anim || locked() || touch || performance.now() - lastWheel < 200) return;
-      const y = scrollY;
-      if (y < lastStop() - 4) { const s = stops(); const i = nearest(y); if (Math.abs(s[i] - y) > 4) glideTo(s[i]); }
-    }, 220);
-  }, { passive: true });
+  // No snap-back: if someone drags the scrollbar or lands between checkpoints, the page stays where they put it.
 
   // In-page links (menu, logo) glide to their section; intro sections land on their checkpoint.
   // Gallery buttons (data-gallery) are handled separately and open the 3D gallery instead.

@@ -1,4 +1,4 @@
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+import * as THREE from './vendor/three.module.min.js';
 
 /*
   Curved 3D gallery: every project and breakdown as a card on a ring around the viewer,
@@ -143,10 +143,12 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
   ui.className = 'g-ui';
   ui.hidden = true;
   ui.setAttribute('role', 'dialog');
+  ui.setAttribute('aria-modal', 'true');
   ui.setAttribute('aria-label', 'All work gallery');
   ui.innerHTML = `
     <button class="g-back" type="button"><span aria-hidden="true">←</span> Exit gallery</button>
-    <div class="g-count" aria-live="polite"><b>01</b> / ${String(N).padStart(2, '0')}</div>
+    <div class="g-count" aria-hidden="true"><b>01</b> / ${String(N).padStart(2, '0')}</div>
+    <p class="sr-only g-status" aria-live="polite"></p>
     <div class="g-bottom">
       <div class="g-info">
         <h2 class="g-title"></h2>
@@ -182,6 +184,7 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
     $('.g-openbtn').href = it.url;
     $('.g-openbtn').textContent = it.kind === 'Breakdown' ? 'Read breakdown ↗' : 'View project ↗';
     $('.g-count b').textContent = String(i + 1).padStart(2, '0');
+    $('.g-status').textContent = `${it.title}, ${i + 1} of ${N}`;   // what screen readers hear on each move
     ticks.forEach((t, k) => t.classList.toggle('on', k === i));
   }
 

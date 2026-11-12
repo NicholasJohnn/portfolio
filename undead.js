@@ -4,7 +4,7 @@
    Look taken from CoreUndead: helmeted zombies in dark coats,
    bones in the grass, green soul lanterns.
    ============================================================ */
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+import * as THREE from './vendor/three.module.min.js';
 
 // Own seeded random numbers, so adding the undead doesn't move the rest of the world
 let seed = 90210;
