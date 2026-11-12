@@ -640,7 +640,7 @@ addEventListener('popstate', () => { if (gallery.isOpen) { pushedState = false; 
 
 document.querySelectorAll('.g-only').forEach(el => { el.hidden = !galleryEnabled; });
 // Start downloading gallery images as soon as someone points at, touches or tabs to a gallery link
-document.querySelectorAll('[data-gallery], [data-gallery-index]').forEach(el => {
+document.querySelectorAll('[data-gallery]').forEach(el => {
   ['pointerenter', 'touchstart', 'focus'].forEach(ev => el.addEventListener(ev, () => gallery.preload(), { once: true, passive: true }));
 });
 document.querySelectorAll('[data-gallery]').forEach(el => {
@@ -648,15 +648,6 @@ document.querySelectorAll('[data-gallery]').forEach(el => {
   el.addEventListener('click', e => {
     e.preventDefault();
     openGallery(el.dataset.gallery === 'breakdowns' ? FIRST_BREAKDOWN : 0);
-  });
-});
-// Hero work tiles open the gallery on that project (or fall back to the ArtStation link)
-document.querySelectorAll('[data-gallery-index]').forEach(el => {
-  if (!galleryEnabled) return;
-  el.addEventListener('click', e => {
-    if (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) return;   // let "open in new tab" work
-    e.preventDefault();
-    openGallery(+el.dataset.galleryIndex);
   });
 });
 if (galleryEnabled && location.hash === '#gallery') history.replaceState(null, '', location.pathname);
@@ -774,8 +765,17 @@ requestAnimationFrame(frame);
     if (!el) return;
     e.preventDefault();
     if (locked()) return;
-    glideTo(href in checkpointOf ? stops()[checkpointOf[href]] : el.getBoundingClientRect().top + scrollY);
-    if (e.detail === 0) el.setAttribute('tabindex', '-1'), el.focus({ preventScroll: true });   // keyboard activation: move focus too
+    const isCard = el.classList.contains('proj');            // hero tiles point at project cards
+    glideTo(href in checkpointOf ? stops()[checkpointOf[href]]
+      : el.getBoundingClientRect().top + scrollY - (isCard ? 110 : 0));   // cards stop clear of the menu
+    if (isCard) {                                            // brief highlight so it's clear where you landed
+      el.classList.remove('arrived'); void el.offsetWidth; el.classList.add('arrived');
+      setTimeout(() => el.classList.remove('arrived'), 1800);
+    }
+    if (e.detail === 0) {                                    // keyboard activation: move focus too
+      if (!isCard) el.setAttribute('tabindex', '-1');
+      el.focus({ preventScroll: true });
+    }
   }));
 })();
 

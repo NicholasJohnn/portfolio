@@ -81,25 +81,26 @@
       <div class="hero-foot">
         <div class="hero-intro">
           <p class="hero-sub reveal"><strong>Level designer in Vancouver.</strong> I build worlds players want to explore, from first whitebox to final lighting.</p>
-          <div class="hero-cta reveal g-only">
-            <a class="btn primary" href="#work" data-gallery>Enter the gallery <span aria-hidden="true">→</span></a>
+          <div class="hero-cta btns reveal">
+            <a class="btn primary" href="#work">View my work <span aria-hidden="true">→</span></a>
+            <a class="btn g-only" href="#work" data-gallery>Enter the 3D gallery</a>
           </div>
           <div class="scroll-hint reveal"><span></span>Scroll to explore</div>
         </div>
-        <!-- First-screen work: real thumbnails. With the gallery on, a tile opens it at that project. -->
+        <!-- First-screen work: each tile scrolls to that project further down the page -->
         <ul class="hero-work reveal" aria-label="Selected projects">
-          <li><a href="https://www.artstation.com/artwork/DLE6En" target="_blank" rel="noopener" data-gallery-index="0">
-            <img src="img/sm/coreundead.jpg" alt="" width="640" height="360" decoding="async" fetchpriority="high">
+          <li><a href="#work">
+            <img src="img/sm/bd-coreundead.jpg" alt="" width="640" height="334" decoding="async" fetchpriority="high">
             <span class="hw-title">CoreUndead</span><span class="hw-meta">UEFN · Game design</span></a></li>
-          <li><a href="https://www.artstation.com/artwork/GeyrK3" target="_blank" rel="noopener" data-gallery-index="4">
+          <li><a href="#p-bringer">
             <img src="img/sm/bringer.jpg" alt="" width="640" height="427" decoding="async" fetchpriority="high">
-            <span class="hw-title">Bringer of Death</span><span class="hw-meta">UE5 · Action RPG</span></a></li>
-          <li><a href="https://www.artstation.com/artwork/VJ6nWX" target="_blank" rel="noopener" data-gallery-index="2">
+            <span class="hw-title">Cursebreaker: Bringer of Death</span><span class="hw-meta">UE5 · Action RPG</span></a></li>
+          <li><a href="#p-skypiea">
             <img src="img/sm/skypiea.jpg" alt="" width="640" height="360" decoding="async" fetchpriority="high">
-            <span class="hw-title">Skypiea Island</span><span class="hw-meta">UE4 · Platformer</span></a></li>
-          <li><a href="https://www.artstation.com/artwork/lDWJBa" target="_blank" rel="noopener" data-gallery-index="3">
+            <span class="hw-title">Spark: Skypiea Island</span><span class="hw-meta">UE4 · Platformer</span></a></li>
+          <li><a href="#p-dragonwing">
             <img src="img/sm/dragonwing.jpg" alt="" width="640" height="231" decoding="async" fetchpriority="high">
-            <span class="hw-title">DragonWing</span><span class="hw-meta">UE4 · Platformer</span></a></li>
+            <span class="hw-title">Spark: DragonWing</span><span class="hw-meta">UE4 · Platformer</span></a></li>
         </ul>
       </div>
     </section>
@@ -202,16 +203,16 @@
       </div>
       <!-- Projects: edit or add cards here. The 3D gallery reads its list from these cards. -->
       <div class="grid" id="grid">
-        <a class="proj reveal" href="https://www.artstation.com/artwork/6N6YwW" target="_blank" rel="noopener">
-          <div class="proj-img"><img src="img/retrovirus.jpg" alt="" loading="lazy" decoding="async" width="1600" height="900"></div>
+        <a class="proj reveal" id="p-bringer" href="https://www.artstation.com/artwork/GeyrK3" target="_blank" rel="noopener">
+          <div class="proj-img"><img src="img/bringer.jpg" alt="" loading="lazy" decoding="async" width="1600" height="900"></div>
           <div class="proj-body">
-            <h3>Retrovirus <span class="badge">Team project</span></h3>
-            <p class="proj-role">2D Puzzle Platformer · Level &amp; Puzzle Design · Unity</p>
-            <p>Play a virus fighting its way to the cell's nucleus. Built in two weeks for the Rapid Prototyping course at the Centre for Entertainment Arts.</p>
+            <h3>Cursebreaker: Bringer of Death <span class="badge">Team project</span></h3>
+            <p class="proj-role">Action RPG / Hack and Slash · Level Design, Set Dressing, Lighting</p>
+            <p>A souls-like action-RPG level built with my team at KPU, plus a custom outline post-process shader.</p>
           </div>
           <span class="proj-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11L11 3M5 3h6v6"/></svg></span>
         </a>
-        <a class="proj reveal" href="https://www.artstation.com/artwork/VJ6nWX" target="_blank" rel="noopener">
+        <a class="proj reveal" id="p-skypiea" href="https://www.artstation.com/artwork/VJ6nWX" target="_blank" rel="noopener">
           <div class="proj-img"><img src="img/skypiea.jpg" alt="" loading="lazy" decoding="async" width="1600" height="900"></div>
           <div class="proj-body">
             <h3>Spark: Skypiea Island</h3>
@@ -220,7 +221,7 @@
           </div>
           <span class="proj-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11L11 3M5 3h6v6"/></svg></span>
         </a>
-        <a class="proj reveal" href="https://www.artstation.com/artwork/lDWJBa" target="_blank" rel="noopener">
+        <a class="proj reveal" id="p-dragonwing" href="https://www.artstation.com/artwork/lDWJBa" target="_blank" rel="noopener">
           <div class="proj-img"><img src="img/dragonwing.jpg" alt="" loading="lazy" decoding="async" width="1600" height="900"></div>
           <div class="proj-body">
             <h3>Spark: DragonWing</h3>
@@ -229,12 +230,12 @@
           </div>
           <span class="proj-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11L11 3M5 3h6v6"/></svg></span>
         </a>
-        <a class="proj reveal" href="https://www.artstation.com/artwork/GeyrK3" target="_blank" rel="noopener">
-          <div class="proj-img"><img src="img/bringer.jpg" alt="" loading="lazy" decoding="async" width="1600" height="900"></div>
+        <a class="proj reveal" id="p-retrovirus" href="https://www.artstation.com/artwork/6N6YwW" target="_blank" rel="noopener">
+          <div class="proj-img"><img src="img/retrovirus.jpg" alt="" loading="lazy" decoding="async" width="1600" height="900"></div>
           <div class="proj-body">
-            <h3>Cursebreaker: Bringer of Death <span class="badge">Team project</span></h3>
-            <p class="proj-role">Action RPG / Hack and Slash · Level Design, Set Dressing, Lighting</p>
-            <p>A souls-like action-RPG level built with my team at KPU, plus a custom outline post-process shader.</p>
+            <h3>Retrovirus <span class="badge">Team project</span></h3>
+            <p class="proj-role">2D Puzzle Platformer · Level &amp; Puzzle Design · Unity</p>
+            <p>Play a virus fighting its way to the cell's nucleus. Built in two weeks for the Rapid Prototyping course at the Centre for Entertainment Arts.</p>
           </div>
           <span class="proj-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11L11 3M5 3h6v6"/></svg></span>
         </a>
