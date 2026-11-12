@@ -667,10 +667,32 @@ requestAnimationFrame(frame);
   ].filter(Boolean);   // a missing section (e.g. a cached old page) is skipped, not a crash
   const root = document.documentElement;
   const maxY = () => root.scrollHeight - innerHeight;
-  // Where each checkpoint sits: the hero at the very top, the others centred in the viewport
-  const stops = () => sections.map((s, i) => i === 0 ? 0
-    : Math.max(0, Math.min(maxY(), Math.round(s.offsetTop + (s.offsetHeight - innerHeight) / 2))));
-  const lastStop = () => stops()[sections.length - 1];
+  // Each stop centres the section's content (its card) in the space under the menu. If the content is taller
+  // than that space, the stop puts its top just below the menu, and a second stop shows its bottom, so a
+  // swipe never skips part of a card.
+  const MENU = 96;
+  const clampY = y => Math.max(0, Math.min(maxY(), Math.round(y)));
+  const content = s => {
+    const c = s.querySelector('.card, .featured-inner') || s;
+    return { top: s.offsetTop + (c === s ? 0 : c.offsetTop), h: c.offsetHeight };   // offsets ignore reveal transforms
+  };
+  const stops = () => sections.map((s, i) => {          // one stop per section (menu links use these)
+    if (i === 0) return 0;
+    const { top, h } = content(s);
+    return clampY(h > innerHeight - MENU - 24 ? top - MENU : top + h / 2 - (innerHeight + MENU) / 2);
+  });
+  const allStops = () => {                              // plus a "see the rest" stop for tall content
+    const base = stops(), out = [];
+    sections.forEach((s, i) => {
+      out.push(base[i]);
+      if (i === 0) return;
+      const { top, h } = content(s);
+      const tail = clampY(top + h + 24 - innerHeight);
+      if (tail > base[i] + 8) out.push(tail);
+    });
+    return out;
+  };
+  const lastStop = () => allStops().at(-1);
   const locked = () => root.classList.contains('g-lock');            // gallery open
 
   let anim = null;
@@ -692,7 +714,7 @@ requestAnimationFrame(frame);
     anim.raf = requestAnimationFrame(step);
   }
   function go(dir) {                                   // dir: +1 next, -1 previous
-    const s = stops(), y = scrollY;
+    const s = allStops(), y = scrollY;
     if (dir > 0) { const i = s.findIndex(v => v > y + 4); if (i >= 0) glideTo(s[i]); }
     else { let i = -1; s.forEach((v, k) => { if (v < y - 4) i = k; }); glideTo(i >= 0 ? s[i] : 0); }
   }
