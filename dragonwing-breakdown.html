@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Spark: DragonWing, breakdown · Nicholas John</title>
+  <meta name="description" content="Level design document for Spark: DragonWing: level brief, design goals, 2D layout, level flow, combat and platforming spaces, and intensity.">
+  <meta name="theme-color" content="#0b0912">
+  <link rel="canonical" href="https://nicholasjohn-portfolio.com/dragonwing-breakdown.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Nicholas John">
+  <meta property="og:title" content="Spark: DragonWing, breakdown · Nicholas John">
+  <meta property="og:description" content="Level design document for Spark: DragonWing: level brief, design goals, 2D layout, level flow, combat and platforming spaces, and intensity.">
+  <meta property="og:url" content="https://nicholasjohn-portfolio.com/dragonwing-breakdown.html">
+  <meta property="og:image" content="https://nicholasjohn-portfolio.com/img/dragonwing.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css?v=24">
+  <link rel="stylesheet" href="project.css?v=28">
+</head>
+<body class="project-page">
+  <header class="nav">
+    <a class="nav-logo" href="index.html">Nicholas John</a>
+    <nav aria-label="Site">
+      <a class="nav-wide" href="index.html#about">About</a>
+      <a href="index.html#work">Featured</a>
+      <a href="index.html#projects">Projects</a>
+      <a class="nav-wide" href="index.html#breakdowns">Breakdowns</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="pp">
+    <header class="pp-head">
+      <a class="pp-back" href="index.html#breakdowns"><span class="ico ico-left" aria-hidden="true"></span> All breakdowns</a>
+      <p class="pp-kicker">Breakdown</p>
+      <h1>Spark: DragonWing</h1>
+      <p class="pp-meta">2022 · Solo project · 4 weeks · Unreal Engine 4</p>
+      <p class="pp-lede">A fantasy platforming level inspired by Spyro, built on the <strong>Spark project in Unreal Engine 4</strong>. The challenge: make a <strong>long, rewarding level on a small map</strong> by building upward.</p>
+      <ul class="pp-facts" aria-label="Project details">
+        <li>Unreal Engine 4</li><li>Action RPG</li><li>Third person</li><li>Platformer</li>
+      </ul>
+      <a class="pp-sibling" href="dragonwing.html">See the finished project <span class="ico ico-right" aria-hidden="true"></span></a>
+    </header>
+
+    <section class="pp-part-block" aria-labelledby="plan">
+      <h2 id="plan">Planning</h2>
+
+      <h3>Level brief</h3>
+      <p>The player, Spark, starts on the edge of the first island. A <strong>trail of gems</strong> leads to a building, where ledges take them up to the roof and across to the second island. There, a tall tower, a group of enemies and more gems are waiting: players must <strong>defeat every enemy, collect every gem and climb the tower</strong> before they can reach the third island.</p>
+
+      <h3>Design goals</h3>
+      <ul class="pp-list">
+        <li>Get comfortable designing for <strong>third-person characters</strong></li>
+        <li>Build a long level on a small map by <strong>using height</strong> to my advantage</li>
+        <li>Get a solid grip on the <strong>full level design workflow</strong>, from documentation to blockout to set dressing</li>
+        <li>Practise basic <strong>level Blueprinting</strong></li>
+      </ul>
+
+      <h3>2D layout</h3>
+      <figure class="pp-fig pp-fig-narrow">
+        <img src="img/dragonwing/layout-2d.jpg" width="942" height="941" loading="lazy" decoding="async" alt="2D layout map: five islands arranged in the shape of a dragon's wing, with the critical path and enemy spawns marked.">
+      </figure>
+      <p>The level comprises of 5 separate islands which come together to represent a dragon’s wing. These islands can be accessed by gliding from one island to the other. Glide-able areas will only open after the players have successfully defeated the horde of orcs and reached a high enough place. The critical path is an intended path the player should take to speed run the course, but more explorative players can also explore the map first and finish the level later.</p>
+
+      <h3>Level flow</h3>
+      <figure class="pp-fig">
+        <img src="img/dragonwing/level-flow.jpg" width="1600" height="1236" loading="lazy" decoding="async" alt="Level flow chart: from the start through each island's combat and gem objectives to the boss fight.">
+      </figure>
+    </section>
+
+    <section class="pp-part-block" aria-labelledby="spaces">
+      <h2 id="spaces">Spaces</h2>
+
+      <h3>Combat spaces</h3>
+      <p>Spark levels are meant to be <strong>combat-fests</strong>: players ram every enemy in sight for gems and rewards on the way to the end. The level encourages players to fight and explore every area to earn more.</p>
+      <figure class="pp-fig">
+        <img src="img/dragonwing/shot-7.jpg" width="1600" height="578" loading="lazy" decoding="async" alt="A torch-lit arena where orcs wait behind a portcullis.">
+      </figure>
+
+      <h3>Platforming areas</h3>
+      <p>Platforming is the main way to get around the map, and some <strong>hidden areas and vantage points</strong> can only be reached by platforming.</p>
+      <figure class="pp-fig">
+        <img src="img/dragonwing/shot-2.jpg" width="1600" height="578" loading="lazy" decoding="async" alt="Snow-covered rooftops under a starry sky, with a round target hanging between buildings.">
+      </figure>
+      <figure class="pp-fig">
+        <img src="img/dragonwing/shot-3.jpg" width="1600" height="578" loading="lazy" decoding="async" alt="A torch-lit stone courtyard with a barred gate, closed in by tall walls.">
+      </figure>
+    </section>
+
+    <section class="pp-part-block" aria-labelledby="pacing">
+      <h2 id="pacing">Intensity chart</h2>
+      <figure class="pp-fig pp-fig-narrow">
+        <img src="img/dragonwing/intensity.jpg" width="901" height="1202" loading="lazy" decoding="async" alt="Intensity chart: low on Island 01, peaks on Islands 02 and 04, a dip on Island 03, and the highest peak at the Boss Zone.">
+      </figure>
+      <p>The intensity chart maps out which parts of the level players will feel as most intense. <strong>Island 01</strong> eases players in so they can learn the level and mechanics. <strong>Island 02 and Island 04</strong> ramp up as players battle large hordes of orcs for treasure chests and gems. <strong>Island 03</strong> is a breather after Island 02, where players can explore for hidden treasure and gems. <strong>Island 05, the Boss Zone</strong>, is the most intense: players face <strong>two orc chieftains and their minions at once</strong>.</p>
+      <figure class="pp-fig">
+        <img src="img/dragonwing/shot-1.jpg" width="1600" height="578" loading="lazy" decoding="async" alt="A snowy village street at night, lit by lanterns, with a dead tree and stone houses.">
+      </figure>
+    </section>
+
+    <footer class="pp-foot">
+      <div class="btns">
+        <a class="btn primary" href="dragonwing.html">See the finished project <span class="ico ico-right" aria-hidden="true"></span></a>
+        <a class="btn" href="index.html#breakdowns"><span class="ico ico-left" aria-hidden="true"></span> All breakdowns</a>
+      </div>
+      <p>Also on ArtStation: <a href="https://www.artstation.com/blogs/nicholasjohn/wBBoR" target="_blank" rel="noopener">original breakdown <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></a></p>
+      <p class="pp-copy">© 2026 Nicholas John</p>
+    </footer>
+  </main>
+
+  <script src="project.js?v=27"></script>
+</body>
+</html>

@@ -156,7 +156,7 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
       </div>
       <div class="g-controls">
         <button class="g-arrow g-prev" type="button" aria-label="Previous piece"><span class="ico ico-left" aria-hidden="true"></span></button>
-        <a class="btn primary g-openbtn" target="_blank" rel="noopener"><span class="g-openlabel">View project</span> <span class="ico ico-out" aria-hidden="true"></span></a>
+        <a class="btn primary g-openbtn"><span class="g-openlabel">View project</span> <span class="ico ico-out g-openico" aria-hidden="true"></span></a>
         <button class="g-arrow g-next" type="button" aria-label="Next piece"><span class="ico ico-right" aria-hidden="true"></span></button>
       </div>
       <div class="g-ticks">${items.map((it, i) => `<button type="button" aria-label="Show ${it.title}" data-i="${i}"></button>`).join('')}</div>
@@ -182,6 +182,10 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
     $('.g-title').textContent = it.title;
     $('.g-role').textContent = `${it.kind} · ${it.role}`;   // kind folded into the role line (no label above the title)
     $('.g-openbtn').href = it.url;
+    const ext = /^https?:/.test(it.url);   // ArtStation links open a new tab; pages on this site open in place
+    $('.g-openbtn').target = ext ? '_blank' : '';
+    $('.g-openbtn').rel = ext ? 'noopener' : '';
+    $('.g-openico').className = 'ico g-openico ' + (ext ? 'ico-out' : 'ico-right');
     $('.g-openlabel').textContent = it.kind === 'Breakdown' ? 'Read breakdown' : 'View project';
     $('.g-count b').textContent = String(i + 1).padStart(2, '0');
     $('.g-status').textContent = `${it.title}, ${i + 1} of ${N}`;   // what screen readers hear on each move
@@ -224,7 +228,7 @@ export function createGallery(renderer, items, { onRequestClose } = {}) {
     if (drag.moved < 6) {
       const i = pick(e.clientX, e.clientY);
       if (i >= 0) {
-        if (i === Math.round(offset)) window.open(items[i].url, '_blank', 'noopener');
+        if (i === Math.round(offset)) (/^https?:/.test(items[i].url) ? window.open(items[i].url, '_blank', 'noopener') : (location.href = items[i].url));
         else go(i);
         return;
       }

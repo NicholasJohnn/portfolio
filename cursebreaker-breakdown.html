@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cursebreaker: Bringer of Death, breakdown · Nicholas John</title>
+  <meta name="description" content="Level design breakdown of Cursebreaker: Bringer of Death, a souls-like action-RPG level built in Unreal Engine 5 by Nicholas John and his team at KPU.">
+  <meta name="theme-color" content="#0b0912">
+  <link rel="canonical" href="https://nicholasjohn-portfolio.com/cursebreaker-breakdown.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Nicholas John">
+  <meta property="og:title" content="Cursebreaker: Bringer of Death · Level design breakdown">
+  <meta property="og:description" content="A souls-like action-RPG level in Unreal Engine 5: references, metrics, combat and platforming spaces, set dressing, and pacing.">
+  <meta property="og:url" content="https://nicholasjohn-portfolio.com/cursebreaker-breakdown.html">
+  <meta property="og:image" content="https://nicholasjohn-portfolio.com/img/bringer.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css?v=24">
+  <link rel="stylesheet" href="project.css?v=28">
+</head>
+<body class="project-page">
+  <header class="nav">
+    <a class="nav-logo" href="index.html">Nicholas John</a>
+    <nav aria-label="Site">
+      <a class="nav-wide" href="index.html#about">About</a>
+      <a href="index.html#work">Featured</a>
+      <a href="index.html#projects">Projects</a>
+      <a class="nav-wide" href="index.html#breakdowns">Breakdowns</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="pp">
+    <header class="pp-head">
+      <a class="pp-back" href="index.html#breakdowns"><span class="ico ico-left" aria-hidden="true"></span> All breakdowns</a>
+      <p class="pp-kicker">Breakdown</p>
+      <h1>Cursebreaker: Bringer of Death</h1>
+      <p class="pp-meta">2023 · Team project at KPU · 10 weeks · Unreal Engine 5</p>
+      <p class="pp-lede">A fantasy action-RPG level with souls-like combat, made with my team for our final-term project in the Advanced Game Design course at Kwantlen Polytechnic University (KPU). My goal was a memorable level that unveils new abilities as players progress and draws them into a captivating story.</p>
+      <p class="pp-part"><strong>My part:</strong> level design, combat spaces and lighting. I also helped with the post-process materials and the game design.</p>
+      <a class="pp-sibling" href="cursebreaker.html">See the finished project <span class="ico ico-right" aria-hidden="true"></span></a>
+    </header>
+
+    <!-- PRE-PRODUCTION -->
+    <section class="pp-part-block" aria-labelledby="pre">
+      <h2 id="pre">Pre-production</h2>
+
+      <h3>References</h3>
+      <p>I gathered references for landmarks, environments, rooms and traps, as both reference material and inspiration. I compiled everything in PureRef into a one-page board that became the foundation for the level.</p>
+      <figure class="pp-fig">
+        <img src="img/cursebreaker/references.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="A PureRef board of reference images for landmarks, environments, rooms and traps.">
+      </figure>
+
+      <h3>Story</h3>
+      <p>Ajay is back to fight the dead, but this time his goal is far more personal: saving the life of a loved one.</p>
+
+      <h3>Points of interest</h3>
+      <ul class="pp-list">
+        <li>Tutorial Area</li><li>Cliffs</li><li>Cave</li><li>Ruins</li><li>Golem Temple</li>
+      </ul>
+
+      <h3>2D layout</h3>
+      <figure class="pp-fig">
+        <img src="img/cursebreaker/map-2d.jpg" width="1600" height="771" loading="lazy" decoding="async" alt="The 2D layout map of the level, from the tutorial area to the Golem Temple.">
+      </figure>
+    </section>
+
+    <!-- PRODUCTION -->
+    <section class="pp-part-block" aria-labelledby="production">
+      <h2 id="production">Production</h2>
+
+      <h3>Understanding metrics</h3>
+      <p>To nail the metrics, I built a gym out of default Unreal shapes and scattered markers around it, using the Unreal mannequin for scale. Once the metrics felt right, I blocked out a rough 3D mock-up of the whole level, start to finish.</p>
+      <figure class="pp-fig pp-fig-narrow">
+        <button class="pp-gif" type="button" data-gif="img/cursebreaker/metrics-gym.gif" aria-label="Play the metrics gym clip (10 MB GIF)">
+          <img src="img/cursebreaker/metrics-gym-still.jpg" width="710" height="400" loading="lazy" decoding="async" alt="The metrics gym in Unreal: default shapes and markers with the mannequin for scale.">
+          <span class="pp-play" aria-hidden="true"><span class="ico ico-right"></span> Play clip</span>
+        </button>
+      </figure>
+
+      <h3>Combat spaces</h3>
+      <p>It's a hack-and-slash fest that pushes players into fights, but the combat spaces reward diverse strategies: vantage points, hidden traps and secret healing items all give players options.</p>
+      <figure class="pp-fig">
+        <img src="img/cursebreaker/combat-space.jpg" width="1600" height="1142" loading="lazy" decoding="async" alt="Top-down view of a combat space: the player on high ground above enemies, traps and bones.">
+      </figure>
+      <figure class="pp-fig pp-video">
+        <iframe src="https://www.youtube-nocookie.com/embed/pOR2P-5Gt7k?rel=0" title="Cursebreaker combat spaces (video)" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+      </figure>
+
+      <h3>Platforming areas</h3>
+      <p>Platforming is the main way to traverse the entire map. There are hidden areas and vantage points that can only be reached by platforming.</p>
+      <figure class="pp-fig">
+        <img src="img/cursebreaker/platforming.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="The player walks a sandy path toward rock ledges, with an enemy waiting on the platform above.">
+      </figure>
+      <figure class="pp-fig pp-video">
+        <iframe src="https://www.youtube-nocookie.com/embed/jHL9lhyg6ec?rel=0" title="Cursebreaker platforming areas (video)" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+      </figure>
+
+      <h3>Feedback session</h3>
+      <p>Once the greybox was complete, I shared the level with instructors and classmates for feedback on platforming feel, narrative, combat and AI.</p>
+
+      <h3>Set dressing</h3>
+      <p>After a week of feedback and iteration, the greybox was locked and ready for set dressing. I mainly used Synty Studios' Dungeon pack, which had every asset I needed to populate the level the way my teammates and I wanted.</p>
+      <figure class="pp-fig">
+        <img src="img/cursebreaker/set-dressing-1.jpg" width="1600" height="901" loading="lazy" decoding="async" alt="A view from high ground across the set-dressed canyon toward the next landmarks.">
+        <figcaption>From high ground, the next landmarks are always in view.</figcaption>
+      </figure>
+      <figure class="pp-fig">
+        <img src="img/cursebreaker/set-dressing-2.jpg" width="1600" height="1067" loading="lazy" decoding="async" alt="Looking out of a cave mouth onto a grassy path with a campfire, framed by trees and canyon walls.">
+      </figure>
+    </section>
+
+    <!-- LEVEL FLOW -->
+    <section class="pp-part-block" aria-labelledby="flow">
+      <h2 id="flow">Level flow</h2>
+
+      <h3>Layout overview</h3>
+      <figure class="pp-fig">
+        <img src="img/cb-route.jpg" width="1920" height="870" loading="lazy" decoding="async" alt="The route through six areas: the Entrance, the Plains, the Cliffs and the Cave, then down into the Ruins and on to the Golem Temple.">
+      </figure>
+      <p>The layout is linear, with secret areas reached by platforming. Each point of interest has exploration beats that reward the player with loot or story moments that expand on Ajay's adventure, and every area ends in a boss fight or an arena fight.</p>
+
+      <h3>Intensity</h3>
+      <figure class="pp-fig">
+        <img src="img/cb-intensity.jpg" width="1920" height="605" loading="lazy" decoding="async" alt="Intensity chart: dropping from the Plains to a low in the Cliffs, slightly higher in the Cave, peaking in the Ruins and staying high at the Golem Temple.">
+        <figcaption>Intensity dips through the Cliffs and Cave, then peaks in the Ruins and stays high into the Golem Temple.</figcaption>
+      </figure>
+
+      <h3>Narrative pacing</h3>
+      <figure class="pp-fig">
+        <img src="img/cb-narrative.jpg" width="1920" height="605" loading="lazy" decoding="async" alt="Narrative pacing chart: easing down from the Plains through the Cliffs to a low in the Cave, rising through the Ruins to its highest point at the Golem Temple.">
+        <figcaption>Story beats ease off through the Cliffs to a low in the Cave, then build through the Ruins to their highest point at the Golem Temple.</figcaption>
+      </figure>
+
+      <h3>Combat pacing</h3>
+      <figure class="pp-fig">
+        <img src="img/cb-combat.jpg" width="1920" height="605" loading="lazy" decoding="async" alt="Combat pacing chart: easing down from the Plains to its lowest in the Cave, peaking in the Ruins and easing slightly at the Golem Temple.">
+        <figcaption>Combat drops to its lowest in the Cave, peaks in the Ruins, and eases slightly for the Golem Temple.</figcaption>
+      </figure>
+    </section>
+
+    <!-- CLOSING -->
+    <section class="pp-part-block" aria-labelledby="closing">
+      <h2 id="closing">Closing thoughts</h2>
+      <p>This was one of the biggest projects my team and I made during the course. With 10 weeks, we tried to fit in as much as we could to show off everyone's skills. It took two to three weeks of experimenting, several one-pagers and a few blockouts to land on a story and concept we were excited about. Despite the frustrating start, I'm really pleased with the result.</p>
+      <p>With more time, I'd make the cave-to-ruins connection larger and more interesting: after set dressing, the stretch between the two mid-bosses feels too short.</p>
+      <p>I'd also add a small hub area to give players more to explore and more rewards to unlock.</p>
+    </section>
+
+    <footer class="pp-foot">
+      <div class="btns">
+        <a class="btn primary" href="cursebreaker.html">See the finished project <span class="ico ico-right" aria-hidden="true"></span></a>
+        <a class="btn" href="index.html#breakdowns"><span class="ico ico-left" aria-hidden="true"></span> All breakdowns</a>
+      </div>
+      <p>Also on ArtStation: <a href="https://www.artstation.com/blogs/nicholasjohn/3ZZpN" target="_blank" rel="noopener">original breakdown <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></a></p>
+      <p class="pp-copy">© 2026 Nicholas John</p>
+    </footer>
+  </main>
+
+  <script src="project.js?v=27"></script>
+</body>
+</html>

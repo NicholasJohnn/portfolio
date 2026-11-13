@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.min.js';
-import { createGallery } from './gallery.js?v=23';
-import { createUndead } from './undead.js?v=23';
+import { createGallery } from './gallery.js?v=25';
+import { createUndead } from './undead.js?v=25';
 
 /* ============================================================
    Projects and breakdowns live in index.html (so they show even if this
@@ -14,13 +14,13 @@ const PROJECTS = [...document.querySelectorAll('#grid .proj')].map(a => ({
   title: text(a, 'h3'),
   role: text(a, '.proj-role'),
   img: a.querySelector('img').getAttribute('src'),
-  url: a.href,
+  url: a.getAttribute("href"),
 }));
 const BREAKDOWNS = [...document.querySelectorAll('#bdList .bd-link')].map(a => ({
   title: text(a, '.bd-title'),
   sub: text(a, '.bd-sub'),
   img: full(a.dataset.img),
-  url: a.href,
+  url: a.getAttribute("href"),
 }));
 
 
@@ -490,7 +490,7 @@ function updateWorld(dt, t) {
    ============================================================ */
 const GALLERY_ITEMS = [
   { kind: 'Project', title: 'CoreUndead', role: 'Action Adventure / Shooter · Game Design, Level Design · UEFN',
-    img: 'img/coreundead.jpg', url: 'https://www.artstation.com/artwork/DLE6En' },
+    img: 'img/coreundead.jpg', url: 'coreundead.html' },
   ...PROJECTS.map(p => ({ kind: 'Project', title: p.title, role: p.role, img: p.img, url: p.url })),
   ...BREAKDOWNS.map(b => ({ kind: 'Breakdown', title: b.title, role: b.sub, img: b.img, url: b.url })),
 ];

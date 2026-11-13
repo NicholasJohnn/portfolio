@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cursebreaker: Lock and Load, breakdown · Nicholas John</title>
+  <meta name="description" content="Level design breakdown of Cursebreaker: Lock and Load, a Hades-inspired top-down shooter in Unreal Engine 5: references, metrics, level types and pacing.">
+  <meta name="theme-color" content="#0b0912">
+  <link rel="canonical" href="https://nicholasjohn-portfolio.com/lockandload-breakdown.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Nicholas John">
+  <meta property="og:title" content="Cursebreaker: Lock and Load, breakdown · Nicholas John">
+  <meta property="og:description" content="Level design breakdown of Cursebreaker: Lock and Load, a Hades-inspired top-down shooter in Unreal Engine 5: references, metrics, level types and pacing.">
+  <meta property="og:url" content="https://nicholasjohn-portfolio.com/lockandload-breakdown.html">
+  <meta property="og:image" content="https://nicholasjohn-portfolio.com/img/bd-lockandload.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css?v=24">
+  <link rel="stylesheet" href="project.css?v=28">
+</head>
+<body class="project-page">
+  <header class="nav">
+    <a class="nav-logo" href="index.html">Nicholas John</a>
+    <nav aria-label="Site">
+      <a class="nav-wide" href="index.html#about">About</a>
+      <a href="index.html#work">Featured</a>
+      <a href="index.html#projects">Projects</a>
+      <a class="nav-wide" href="index.html#breakdowns">Breakdowns</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="pp">
+    <header class="pp-head">
+      <a class="pp-back" href="index.html#breakdowns"><span class="ico ico-left" aria-hidden="true"></span> All breakdowns</a>
+      <p class="pp-kicker">Breakdown</p>
+      <h1>Cursebreaker: Lock and Load</h1>
+      <p class="pp-meta">5 weeks · Unreal Engine 5</p>
+      <p class="pp-lede">A fantasy <strong>top-down shooter</strong> level inspired by <strong>Hades</strong> and <strong>Curse of the Dead Gods</strong>, built in Unreal Engine 5 over five weeks.</p>
+      <ul class="pp-facts" aria-label="Project details">
+        <li>Developed in 5 weeks</li><li>Unreal Engine 5</li><li>Action RPG</li><li>Top down</li><li>Linear</li><li>Shooter</li>
+      </ul>
+    </header>
+
+    <figure class="pp-hero pp-video">
+      <iframe src="https://www.youtube-nocookie.com/embed/r9KtdOBDUvw?rel=0" title="Cursebreaker: Lock and Load (video)" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+    </figure>
+
+    <section class="pp-part-block" aria-labelledby="pre">
+      <h2 id="pre">Pre-production</h2>
+
+      <h3>References</h3>
+      <p>I gathered references for landmarks, environments, rooms and traps, as both reference material and inspiration. The biggest influences were <strong>Hades</strong> and <strong>Curse of the Dead Gods</strong>. I compiled everything in <strong>PureRef</strong> into a one-page board that became the foundation for the level.</p>
+
+      <h3>Story</h3>
+      <p>An ancient curse has been unleashed! Hordes of mummies have risen in their lost temple and will soon reach the surface if they aren’t stopped. Venture forth as the intrepid adventurer Ajay, shoot your way through traps, living statues and the living dead, and find the missing pieces of the medallion to put an end to the curse!</p>
+
+      <h3>Points of interest</h3>
+      <ul class="pp-list">
+        <li>Cave Entrance</li><li>Corridor</li><li>Arena</li><li>Golem Shrine</li><li>Throne Room</li>
+      </ul>
+    </section>
+
+    <section class="pp-part-block" aria-labelledby="production">
+      <h2 id="production">Production</h2>
+
+      <h3>Understanding metrics</h3>
+      <p>To nail the metrics, I built a <strong>gym</strong> out of default Unreal shapes, using the Unreal mannequin and simple shapes as markers for game objects. Once the metrics felt right, I blocked out <strong>rough 3D mock-ups of every level</strong>, start to finish.</p>
+      <figure class="pp-fig pp-fig-narrow">
+        <img src="img/lockandload/metrics.jpg" width="1080" height="547" loading="lazy" decoding="async" alt="The Unreal content browser with the blockout actors used as markers: traps, statues, enemies and pickups.">
+      </figure>
+
+      <h3>Combat spaces</h3>
+      <p>It's a shoot-fest, but players can beat enemies in <strong>different ways</strong>: hidden <strong>spike traps</strong>, <strong>healing items</strong> and <strong>statues</strong> can all be used against them. This encourages players to vary how they play.</p>
+      <figure class="pp-fig">
+        <img src="img/lockandload/combat.jpg" width="1600" height="1142" loading="lazy" decoding="async" alt="A greybox arena seen from above, with the player among spike traps, statues and pillars.">
+      </figure>
+
+      <h3>Multiple levels</h3>
+      <p>The game is split into levels with different combat scenarios and difficulty:</p>
+      <ul class="pp-list">
+        <li><strong>Corridor levels (Easy):</strong> fight from one end to the other, defeating every enemy. Moderate enemy spawns.</li>
+        <li><strong>Arena levels (Medium):</strong> pure combat; players must keep moving to dodge traps and enemy attacks. Heavy enemy spawns.</li>
+        <li><strong>Boss levels (Hard):</strong> a boss fight where the boss is always backed up by minions.</li>
+      </ul>
+      <figure class="pp-fig">
+        <img src="img/lockandload/map-types.jpg" width="1600" height="1142" loading="lazy" decoding="async" alt="Greybox examples of the three level types: a corridor, an arena and a boss room.">
+      </figure>
+    </section>
+
+    <section class="pp-part-block" aria-labelledby="flow">
+      <h2 id="flow">Level flow</h2>
+
+      <h3>Layout overview</h3>
+      <figure class="pp-fig">
+        <img src="img/lockandload/layout.jpg" width="1600" height="471" loading="lazy" decoding="async" alt="The route through every level: Cave Entrance, Arena 1, Golem Shrine, Rolling Ball Corridor, Arena 2 and the Throne Room.">
+      </figure>
+      <p>The layout is <strong>linear</strong>, split into separate levels. Apart from the two arena fights, <strong>each level has its own mechanics and flow</strong>.</p>
+
+      <h3>Intensity chart</h3>
+      <figure class="pp-fig">
+        <img src="img/lockandload/intensity.jpg" width="1600" height="471" loading="lazy" decoding="async" alt="Intensity chart across the six levels, from the Cave Entrance to the Throne Room.">
+      </figure>
+
+      <h3>Combat pacing</h3>
+      <figure class="pp-fig">
+        <img src="img/lockandload/combat-pacing.jpg" width="1600" height="471" loading="lazy" decoding="async" alt="Combat pacing chart across the six levels, from the Cave Entrance to the Throne Room.">
+      </figure>
+    </section>
+
+    <footer class="pp-foot">
+      <div class="btns">
+        <a class="btn" href="index.html#breakdowns"><span class="ico ico-left" aria-hidden="true"></span> All breakdowns</a>
+      </div>
+      <p>Also on ArtStation: <a href="https://www.artstation.com/blogs/nicholasjohn/y118y" target="_blank" rel="noopener">original breakdown <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></a></p>
+      <p class="pp-copy">© 2026 Nicholas John</p>
+    </footer>
+  </main>
+
+  <script src="project.js?v=27"></script>
+</body>
+</html>
