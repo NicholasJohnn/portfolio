@@ -104,3 +104,6 @@
 .pp-actions { margin-top: 22px; }
 .pp-head .pp-facts { margin-top: 16px; }
 .pp-fig-narrow img { width: auto; max-width: 100%; max-height: 80vh; margin: 0 auto; }   /* tall charts and maps stay within one screen */
+
+/* style.css pins the home page's <footer> to the bottom of the screen; these pages' footers flow with the content */
+.pp .pp-foot { position: static; font-size: inherit; color: inherit; }
