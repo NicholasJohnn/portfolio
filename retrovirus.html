@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css?v=24">
-  <link rel="stylesheet" href="project.css?v=29">
+  <link rel="stylesheet" href="project.css?v=32">
 </head>
 <body class="project-page">
   <header class="nav">
@@ -27,7 +27,7 @@
     <nav aria-label="Site">
       <a class="nav-wide" href="index.html#about">About</a>
       <a href="index.html#work">Featured</a>
-      <a href="index.html#projects">Projects</a>
+      <a href="index.html#projects" aria-current="true">Projects</a>
       <a class="nav-wide" href="index.html#breakdowns">Breakdowns</a>
       <a href="index.html#contact">Contact</a>
     </nav>
@@ -36,9 +36,18 @@
   <main class="pp">
     <header class="pp-head">
       <a class="pp-back" href="index.html#projects"><span class="ico ico-left" aria-hidden="true"></span> All projects</a>
+      <nav class="pp-switch" aria-label="Pages for this project"><a href="retrovirus.html" aria-current="page">Project</a><span class="pp-switch-off">No breakdown page</span></nav>
       <h1>Retrovirus</h1>
       <p class="pp-meta">2022 · Team project at CEA · 2 weeks · Unity</p>
-      <p class="pp-role">2D Puzzle Platformer · Level &amp; Puzzle Design · Unity</p>
+      <p class="pp-role">2D Puzzle Platformer · Level &amp; Puzzle Design</p>
+    </header>
+
+    <figure class="pp-hero pp-video">
+      <video controls preload="none" playsinline poster="img/retrovirus/level-1.jpg" src="video/retrovirus-gameplay.mp4" aria-label="Retrovirus gameplay video"></video>
+      <figcaption>Gameplay</figcaption>
+    </figure>
+
+    <div class="pp-intro">
       <p class="pp-lede">Retrovirus is a 2D puzzle-platformer where you play a virus fighting its way to the cell's nucleus, mutating, dodging deadly obstacles and solving puzzles on the way.</p>
       <p class="pp-part"><strong>My role:</strong> level and puzzle designer. Built in two weeks for the Rapid Prototyping course at the Centre for Entertainment Arts.</p>
       <h2 class="pp-mini">What I focused on</h2>
@@ -50,12 +59,8 @@
       <div class="btns pp-actions">
         <a class="btn primary" href="https://diffthought.itch.io/retrovirus" target="_blank" rel="noopener">Play on itch.io <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></a>
       </div>
-    </header>
+    </div>
 
-    <figure class="pp-hero pp-video">
-      <video controls preload="none" playsinline poster="img/retrovirus/level-1.jpg" src="video/retrovirus-gameplay.mp4" aria-label="Retrovirus gameplay video"></video>
-      <figcaption>Gameplay</figcaption>
-    </figure>
 
     <section class="pp-part-block" aria-labelledby="shots">
       <h2 id="shots">In the level</h2>
@@ -82,6 +87,10 @@
     </section>
 
     <footer class="pp-foot">
+      <a class="pp-next" href="cursebreaker.html">
+        <img src="img/sm/bringer.jpg" alt="" width="640" height="360" loading="lazy" decoding="async">
+        <span class="pp-next-text"><span class="pp-next-label">Next project</span><span class="pp-next-title">Cursebreaker: Bringer of Death</span></span> <span class="ico ico-right" aria-hidden="true"></span>
+      </a>
       <div class="btns">
         <a class="btn primary" href="https://diffthought.itch.io/retrovirus" target="_blank" rel="noopener">Play on itch.io <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></a>
         <a class="btn" href="index.html#projects"><span class="ico ico-left" aria-hidden="true"></span> All projects</a>
@@ -91,6 +100,6 @@
     </footer>
   </main>
 
-  <script src="project.js?v=27"></script>
+  <script src="project.js?v=30"></script>
 </body>
 </html>

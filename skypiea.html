@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css?v=24">
-  <link rel="stylesheet" href="project.css?v=29">
+  <link rel="stylesheet" href="project.css?v=32">
 </head>
 <body class="project-page">
   <header class="nav">
@@ -27,7 +27,7 @@
     <nav aria-label="Site">
       <a class="nav-wide" href="index.html#about">About</a>
       <a href="index.html#work">Featured</a>
-      <a href="index.html#projects">Projects</a>
+      <a href="index.html#projects" aria-current="true">Projects</a>
       <a class="nav-wide" href="index.html#breakdowns">Breakdowns</a>
       <a href="index.html#contact">Contact</a>
     </nav>
@@ -36,9 +36,18 @@
   <main class="pp">
     <header class="pp-head">
       <a class="pp-back" href="index.html#projects"><span class="ico ico-left" aria-hidden="true"></span> All projects</a>
+      <nav class="pp-switch" aria-label="Pages for this project"><a href="skypiea.html" aria-current="page">Project</a><span class="pp-switch-off">No breakdown page</span></nav>
       <h1>Spark: Skypiea Island</h1>
       <p class="pp-meta">2022 · Solo project · 4 weeks · Unreal Engine 4</p>
-      <p class="pp-role">Platformer · Level Design · Unreal Engine 4</p>
+      <p class="pp-role">Platformer · Level Design</p>
+    </header>
+
+    <figure class="pp-hero pp-video">
+      <video controls preload="none" playsinline poster="img/skypiea/shot-1.jpg" src="video/skypiea-showcase.mp4" aria-label="Skypiea Island level showcase"></video>
+      <figcaption>Level showcase</figcaption>
+    </figure>
+
+    <div class="pp-intro">
       <p class="pp-lede">A floating-island platforming level inspired by Spyro, built on the Spark project in Unreal Engine 4.</p>
       <h2 class="pp-mini">What I did</h2>
       <ul class="pp-list">
@@ -51,12 +60,8 @@
         <li>Winding stairways lengthen the route without enlarging the map</li>
         <li>Hidden boss fights reward players who explore</li>
       </ul>
-    </header>
+    </div>
 
-    <figure class="pp-hero pp-video">
-      <video controls preload="none" playsinline poster="img/skypiea/shot-1.jpg" src="video/skypiea-showcase.mp4" aria-label="Skypiea Island level showcase"></video>
-      <figcaption>Level showcase</figcaption>
-    </figure>
 
     <section class="pp-part-block" aria-labelledby="shots">
       <h2 id="shots">In the level</h2>
@@ -83,7 +88,7 @@
         <img src="img/skypiea/symbol-pads.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="Four glowing symbol pads set into a stone floor.">
         <figcaption>Symbol pads for the final puzzle.</figcaption>
       </figure>
-      <figure class="pp-fig">
+      <figure class="pp-fig pp-fig-narrow">
         <img src="img/skypiea/final-puzzle-bp.jpg" width="1455" height="1236" loading="lazy" decoding="async" alt="The final puzzle's level Blueprint graph in Unreal Engine.">
         <figcaption>Final puzzle Blueprint.</figcaption>
       </figure>
@@ -98,6 +103,10 @@
     </section>
 
     <footer class="pp-foot">
+      <a class="pp-next" href="retrovirus.html">
+        <img src="img/sm/retrovirus.jpg" alt="" width="640" height="360" loading="lazy" decoding="async">
+        <span class="pp-next-text"><span class="pp-next-label">Next project</span><span class="pp-next-title">Retrovirus</span></span> <span class="ico ico-right" aria-hidden="true"></span>
+      </a>
       <div class="btns">
         <a class="btn" href="index.html#projects"><span class="ico ico-left" aria-hidden="true"></span> All projects</a>
       </div>
@@ -106,6 +115,6 @@
     </footer>
   </main>
 
-  <script src="project.js?v=27"></script>
+  <script src="project.js?v=30"></script>
 </body>
 </html>

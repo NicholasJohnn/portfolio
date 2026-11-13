@@ -1,3 +1,6 @@
 # Claude Code / Impeccable setup: local only, not part of the public site
 .claude/
 .impeccable/
+
+# Drafts for new projects: local only, never published
+new-projects/

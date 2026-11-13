@@ -19,16 +19,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css?v=24">
-  <link rel="stylesheet" href="project.css?v=29">
+  <link rel="stylesheet" href="project.css?v=32">
 </head>
 <body class="project-page">
   <header class="nav">
     <a class="nav-logo" href="index.html">Nicholas John</a>
     <nav aria-label="Site">
       <a class="nav-wide" href="index.html#about">About</a>
-      <a href="index.html#work">Featured</a>
+      <a class="nav-wide" href="index.html#work">Featured</a>
       <a href="index.html#projects">Projects</a>
-      <a class="nav-wide" href="index.html#breakdowns">Breakdowns</a>
+      <a href="index.html#breakdowns" aria-current="true">Breakdowns</a>
       <a href="index.html#contact">Contact</a>
     </nav>
   </header>
@@ -36,13 +36,18 @@
   <main class="pp">
     <header class="pp-head">
       <a class="pp-back" href="index.html#breakdowns"><span class="ico ico-left" aria-hidden="true"></span> All breakdowns</a>
-      <p class="pp-kicker">Breakdown</p>
+      <nav class="pp-switch" aria-label="Pages for this project"><a href="cursebreaker.html">Project</a><a href="cursebreaker-breakdown.html" aria-current="page">Breakdown</a></nav>
       <h1>Cursebreaker: Bringer of Death</h1>
       <p class="pp-meta">2023 · Team project at KPU · 10 weeks · Unreal Engine 5</p>
+    </header>
+
+    <figure class="pp-hero"><img src="img/cursebreaker/shot-3.jpg" width="1600" height="900" alt="A sunlit sandy path through the Cliffs, passing wooden supports toward a glowing marker."></figure>
+
+    <div class="pp-intro">
       <p class="pp-lede">A fantasy action-RPG level with souls-like combat, made with my team for our final-term project in the Advanced Game Design course at Kwantlen Polytechnic University (KPU). My goal was a memorable level that unveils new abilities as players progress and draws them into a captivating story.</p>
       <p class="pp-part"><strong>My part:</strong> level design, combat spaces and lighting. I also helped with the post-process materials and the game design.</p>
-      <a class="pp-sibling" href="cursebreaker.html">See the finished project <span class="ico ico-right" aria-hidden="true"></span></a>
-    </header>
+    </div>
+    <nav class="pp-toc" aria-label="On this page"><p class="pp-mini">On this page</p><ul><li><a href="#pre">Pre-production</a></li><li><a href="#production">Production</a></li><li><a href="#flow">Level flow</a></li><li><a href="#closing">Closing thoughts</a></li></ul></nav>
 
     <!-- PRE-PRODUCTION -->
     <section class="pp-part-block" aria-labelledby="pre">
@@ -75,7 +80,7 @@
       <h3>Understanding metrics</h3>
       <p>To nail the metrics, I built a gym out of default Unreal shapes and scattered markers around it, using the Unreal mannequin for scale. Once the metrics felt right, I blocked out a rough 3D mock-up of the whole level, start to finish.</p>
       <figure class="pp-fig pp-fig-narrow">
-        <button class="pp-gif" type="button" data-gif="img/cursebreaker/metrics-gym.gif" aria-label="Play the metrics gym clip (10 MB GIF)">
+        <button class="pp-gif" type="button" data-gif="img/cursebreaker/metrics-gym.gif" data-label="Metrics gym clip" aria-label="Play the metrics gym clip (10 MB GIF)">
           <img src="img/cursebreaker/metrics-gym-still.jpg" width="710" height="400" loading="lazy" decoding="async" alt="The metrics gym in Unreal: default shapes and markers with the mannequin for scale.">
           <span class="pp-play" aria-hidden="true"><span class="ico ico-right"></span> Play clip</span>
         </button>
@@ -151,6 +156,10 @@
     </section>
 
     <footer class="pp-foot">
+      <a class="pp-next" href="coreundead-breakdown.html">
+        <img src="img/sm/bd-coreundead.jpg" alt="" width="640" height="360" loading="lazy" decoding="async">
+        <span class="pp-next-text"><span class="pp-next-label">Next breakdown</span><span class="pp-next-title">CoreUndead</span></span> <span class="ico ico-right" aria-hidden="true"></span>
+      </a>
       <div class="btns">
         <a class="btn primary" href="cursebreaker.html">See the finished project <span class="ico ico-right" aria-hidden="true"></span></a>
         <a class="btn" href="index.html#breakdowns"><span class="ico ico-left" aria-hidden="true"></span> All breakdowns</a>
@@ -160,6 +169,6 @@
     </footer>
   </main>
 
-  <script src="project.js?v=27"></script>
+  <script src="project.js?v=30"></script>
 </body>
 </html>

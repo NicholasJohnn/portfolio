@@ -19,16 +19,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css?v=24">
-  <link rel="stylesheet" href="project.css?v=29">
+  <link rel="stylesheet" href="project.css?v=32">
 </head>
 <body class="project-page">
   <header class="nav">
     <a class="nav-logo" href="index.html">Nicholas John</a>
     <nav aria-label="Site">
       <a class="nav-wide" href="index.html#about">About</a>
-      <a href="index.html#work">Featured</a>
+      <a class="nav-wide" href="index.html#work">Featured</a>
       <a href="index.html#projects">Projects</a>
-      <a class="nav-wide" href="index.html#breakdowns">Breakdowns</a>
+      <a href="index.html#breakdowns" aria-current="true">Breakdowns</a>
       <a href="index.html#contact">Contact</a>
     </nav>
   </header>
@@ -36,15 +36,20 @@
   <main class="pp">
     <header class="pp-head">
       <a class="pp-back" href="index.html#breakdowns"><span class="ico ico-left" aria-hidden="true"></span> All breakdowns</a>
-      <p class="pp-kicker">Breakdown</p>
+      <nav class="pp-switch" aria-label="Pages for this project"><a href="dragonwing.html">Project</a><a href="dragonwing-breakdown.html" aria-current="page">Breakdown</a></nav>
       <h1>Spark: DragonWing</h1>
       <p class="pp-meta">2022 · Solo project · 4 weeks · Unreal Engine 4</p>
+    </header>
+
+    <figure class="pp-hero"><img src="img/dragonwing/overview.jpg" width="1600" height="578" alt="The whole DragonWing level at night: snow-covered buildings and towers packed onto small islands."></figure>
+
+    <div class="pp-intro">
       <p class="pp-lede">A fantasy platforming level inspired by Spyro, built on the <strong>Spark project in Unreal Engine 4</strong>. The challenge: make a <strong>long, rewarding level on a small map</strong> by building upward.</p>
       <ul class="pp-facts" aria-label="Project details">
-        <li>Unreal Engine 4</li><li>Action RPG</li><li>Third person</li><li>Platformer</li>
+        <li>Action RPG</li><li>Third person</li><li>Platformer</li>
       </ul>
-      <a class="pp-sibling" href="dragonwing.html">See the finished project <span class="ico ico-right" aria-hidden="true"></span></a>
-    </header>
+    </div>
+    <nav class="pp-toc" aria-label="On this page"><p class="pp-mini">On this page</p><ul><li><a href="#plan">Planning</a></li><li><a href="#spaces">Spaces</a></li><li><a href="#pacing">Intensity chart</a></li></ul></nav>
 
     <section class="pp-part-block" aria-labelledby="plan">
       <h2 id="plan">Planning</h2>
@@ -103,6 +108,10 @@
     </section>
 
     <footer class="pp-foot">
+      <a class="pp-next" href="lockandload-breakdown.html">
+        <img src="img/sm/bd-lockandload.jpg" alt="" width="640" height="360" loading="lazy" decoding="async">
+        <span class="pp-next-text"><span class="pp-next-label">Next breakdown</span><span class="pp-next-title">Cursebreaker: Lock and Load</span></span> <span class="ico ico-right" aria-hidden="true"></span>
+      </a>
       <div class="btns">
         <a class="btn primary" href="dragonwing.html">See the finished project <span class="ico ico-right" aria-hidden="true"></span></a>
         <a class="btn" href="index.html#breakdowns"><span class="ico ico-left" aria-hidden="true"></span> All breakdowns</a>
@@ -112,6 +121,6 @@
     </footer>
   </main>
 
-  <script src="project.js?v=27"></script>
+  <script src="project.js?v=30"></script>
 </body>
 </html>

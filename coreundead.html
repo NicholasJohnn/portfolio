@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css?v=24">
-  <link rel="stylesheet" href="project.css?v=29">
+  <link rel="stylesheet" href="project.css?v=32">
 </head>
 <body class="project-page">
   <header class="nav">
@@ -27,7 +27,7 @@
     <nav aria-label="Site">
       <a class="nav-wide" href="index.html#about">About</a>
       <a href="index.html#work">Featured</a>
-      <a href="index.html#projects">Projects</a>
+      <a href="index.html#projects" aria-current="true">Projects</a>
       <a class="nav-wide" href="index.html#breakdowns">Breakdowns</a>
       <a href="index.html#contact">Contact</a>
     </nav>
@@ -36,9 +36,18 @@
   <main class="pp">
     <header class="pp-head">
       <a class="pp-back" href="index.html#projects"><span class="ico ico-left" aria-hidden="true"></span> All projects</a>
+      <nav class="pp-switch" aria-label="Pages for this project"><a href="coreundead.html" aria-current="page">Project</a><a href="coreundead-breakdown.html">Breakdown</a></nav>
       <h1>CoreUndead</h1>
       <p class="pp-meta">2024 · Solo project · 5 weeks · UEFN</p>
       <p class="pp-role">Action Adventure / Shooter · Game Design, Level Design, Combat Design, Set Dressing, Lighting</p>
+    </header>
+
+    <figure class="pp-hero pp-video">
+      <video controls preload="none" playsinline poster="img/coreundead/poster.jpg" src="video/coreundead-trailer.mp4" aria-label="CoreUndead gameplay trailer"></video>
+      <figcaption>Gameplay trailer</figcaption>
+    </figure>
+
+    <div class="pp-intro">
       <p class="pp-lede">CoreUndead is a single-player fantasy shooter and my first complete game in UEFN (Unreal Editor for Fortnite). I took it from the first design document all the way to a published, playable island.</p>
       <h2 class="pp-mini">What I did</h2>
       <ul class="pp-list">
@@ -47,19 +56,15 @@
         <li>Built all gameplay with UEFN creative devices</li>
         <li>Blocked out, set dressed and lit the entire level</li>
       </ul>
-      <ul class="pp-facts" aria-label="Software">
+      <ul class="pp-facts" aria-label="Project details">
         <li>UEFN</li><li>Unreal Engine</li><li>Photoshop</li>
       </ul>
       <div class="btns pp-actions">
-        <a class="btn primary" href="https://www.fortnite.com/@accidentalmallu/9981-8767-7616" target="_blank" rel="noopener">Play in Fortnite <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></a>
-        <a class="btn" href="coreundead-breakdown.html">Read the breakdown <span class="ico ico-right" aria-hidden="true"></span></a>
+        <a class="btn primary" href="https://www.fortnite.com/@nocogames/9981-8767-7616" target="_blank" rel="noopener">Play in Fortnite <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></a>
+        <a class="btn" href="https://www.fortnite.com/@nocogames" target="_blank" rel="noopener">More of my islands <span class="ico ico-out" aria-hidden="true"></span><span class="sr-only"> (opens in a new tab)</span></a>
       </div>
-    </header>
+    </div>
 
-    <figure class="pp-hero pp-video">
-      <video controls preload="none" playsinline poster="img/coreundead/poster.jpg" src="video/coreundead-trailer.mp4" aria-label="CoreUndead gameplay trailer"></video>
-      <figcaption>Gameplay trailer</figcaption>
-    </figure>
 
     <section class="pp-part-block" aria-labelledby="highlights">
       <h2 id="highlights">Design highlights</h2>
@@ -86,6 +91,10 @@
     </section>
 
     <footer class="pp-foot">
+      <a class="pp-next" href="dragonwing.html">
+        <img src="img/sm/dragonwing.jpg" alt="" width="640" height="360" loading="lazy" decoding="async">
+        <span class="pp-next-text"><span class="pp-next-label">Next project</span><span class="pp-next-title">Spark: DragonWing</span></span> <span class="ico ico-right" aria-hidden="true"></span>
+      </a>
       <div class="btns">
         <a class="btn primary" href="coreundead-breakdown.html">Read the breakdown <span class="ico ico-right" aria-hidden="true"></span></a>
         <a class="btn" href="index.html#projects"><span class="ico ico-left" aria-hidden="true"></span> All projects</a>
@@ -95,6 +104,6 @@
     </footer>
   </main>
 
-  <script src="project.js?v=27"></script>
+  <script src="project.js?v=30"></script>
 </body>
 </html>

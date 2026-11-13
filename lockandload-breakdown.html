@@ -19,16 +19,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css?v=24">
-  <link rel="stylesheet" href="project.css?v=29">
+  <link rel="stylesheet" href="project.css?v=32">
 </head>
 <body class="project-page">
   <header class="nav">
     <a class="nav-logo" href="index.html">Nicholas John</a>
     <nav aria-label="Site">
       <a class="nav-wide" href="index.html#about">About</a>
-      <a href="index.html#work">Featured</a>
+      <a class="nav-wide" href="index.html#work">Featured</a>
       <a href="index.html#projects">Projects</a>
-      <a class="nav-wide" href="index.html#breakdowns">Breakdowns</a>
+      <a href="index.html#breakdowns" aria-current="true">Breakdowns</a>
       <a href="index.html#contact">Contact</a>
     </nav>
   </header>
@@ -36,18 +36,23 @@
   <main class="pp">
     <header class="pp-head">
       <a class="pp-back" href="index.html#breakdowns"><span class="ico ico-left" aria-hidden="true"></span> All breakdowns</a>
-      <p class="pp-kicker">Breakdown</p>
+      <nav class="pp-switch" aria-label="Pages for this project"><span class="pp-switch-off">No project page</span><a href="lockandload-breakdown.html" aria-current="page">Breakdown</a></nav>
       <h1>Cursebreaker: Lock and Load</h1>
       <p class="pp-meta">5 weeks · Unreal Engine 5</p>
-      <p class="pp-lede">A fantasy <strong>top-down shooter</strong> level inspired by <strong>Hades</strong> and <strong>Curse of the Dead Gods</strong>, built in Unreal Engine 5 over five weeks.</p>
-      <ul class="pp-facts" aria-label="Project details">
-        <li>Developed in 5 weeks</li><li>Unreal Engine 5</li><li>Action RPG</li><li>Top down</li><li>Linear</li><li>Shooter</li>
-      </ul>
     </header>
 
     <figure class="pp-hero pp-video">
       <iframe src="https://www.youtube-nocookie.com/embed/r9KtdOBDUvw?rel=0" title="Cursebreaker: Lock and Load (video)" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
     </figure>
+
+    <div class="pp-intro">
+      <p class="pp-lede">A fantasy <strong>top-down shooter</strong> level inspired by <strong>Hades</strong> and <strong>Curse of the Dead Gods</strong>, built in Unreal Engine 5 over five weeks.</p>
+      <ul class="pp-facts" aria-label="Project details">
+        <li>Action RPG</li><li>Top down</li><li>Linear</li><li>Shooter</li>
+      </ul>
+    </div>
+    <nav class="pp-toc" aria-label="On this page"><p class="pp-mini">On this page</p><ul><li><a href="#pre">Pre-production</a></li><li><a href="#production">Production</a></li><li><a href="#flow">Level flow</a></li></ul></nav>
+
 
     <section class="pp-part-block" aria-labelledby="pre">
       <h2 id="pre">Pre-production</h2>
@@ -112,6 +117,10 @@
     </section>
 
     <footer class="pp-foot">
+      <a class="pp-next" href="cursebreaker-breakdown.html">
+        <img src="img/sm/bd-bringer.jpg" alt="" width="640" height="360" loading="lazy" decoding="async">
+        <span class="pp-next-text"><span class="pp-next-label">Next breakdown</span><span class="pp-next-title">Cursebreaker: Bringer of Death</span></span> <span class="ico ico-right" aria-hidden="true"></span>
+      </a>
       <div class="btns">
         <a class="btn" href="index.html#breakdowns"><span class="ico ico-left" aria-hidden="true"></span> All breakdowns</a>
       </div>
@@ -120,6 +129,6 @@
     </footer>
   </main>
 
-  <script src="project.js?v=27"></script>
+  <script src="project.js?v=30"></script>
 </body>
 </html>
