@@ -1,9 +1,10 @@
-/* CoreUndead case study tabs: Route / Intensity / Combat pacing over the same filmstrip.
-   A separate plain script so it works even if the 3D scripts fail to load. */
-(function () {
-  var strip = document.getElementById('cs-panel');
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.case-tabs [role="tab"]'));
-  if (!strip || !tabs.length) return;
+/* Beat-by-beat tabs (Route / Intensity / ... ). Each project's case study has its own tab row and chart
+   panel; the tabs switch which chart and caption show. A separate plain script so it works even if the
+   3D scripts fail to load. */
+document.querySelectorAll('.case-tabs').forEach(function (list) {
+  var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+  var strip = tabs.length && document.getElementById(tabs[0].getAttribute('aria-controls'));
+  if (!strip) return;
 
   function select(tab, focus) {
     tabs.forEach(function (t) {
@@ -12,7 +13,7 @@
       t.tabIndex = on ? 0 : -1;
     });
     strip.dataset.view = tab.dataset.view;
-    strip.querySelectorAll('.case-frames img').forEach(function (img) {   // only the visible chart is read out
+    strip.querySelectorAll('img[class^="cs-"]').forEach(function (img) {   // only the visible chart is read out
       img.setAttribute('aria-hidden', !img.classList.contains('cs-' + tab.dataset.view));
     });
     strip.setAttribute('aria-labelledby', tab.id);
@@ -29,9 +30,10 @@
       select(tabs[(next + tabs.length) % tabs.length], true);
     });
   });
-})();
+});
 
-/* Featured tabs: switch the Featured section between CoreUndead and Cursebreaker. */
+/* Featured tabs: switch the Featured section between CoreUndead and Cursebreaker, and the beat-by-beat
+   below with it (feat-coreundead goes with case-coreundead, feat-cursebreaker with case-cursebreaker). */
 (function () {
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.feature-tabs [role="tab"]'));
   if (!tabs.length) return;
@@ -40,8 +42,11 @@
       var on = t === tab;
       t.setAttribute('aria-selected', on);
       t.tabIndex = on ? 0 : -1;
-      var panel = document.getElementById(t.getAttribute('aria-controls'));
+      var id = t.getAttribute('aria-controls');
+      var panel = document.getElementById(id);
       if (panel) panel.hidden = !on;
+      var study = document.getElementById(id.replace('feat-', 'case-'));
+      if (study) study.hidden = !on;
     });
     if (focus) tab.focus();
   }

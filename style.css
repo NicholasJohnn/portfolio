@@ -189,7 +189,7 @@ h3 { font: 600 20px/1.3 var(--sans); margin: 0 0 4px; }
 .js .case-tabs, .js .feature-tabs { display: inline-flex; }
 .case-tabs button, .feature-tabs button {
   min-height: 44px; padding: 0 14px; margin-bottom: -1px; border: 0; border-bottom: 2px solid transparent; background: none; cursor: pointer;
-  color: var(--muted); font: 500 14px var(--sans); transition: background .25s, color .25s;
+  color: var(--muted); font: 500 14px var(--sans); white-space: nowrap; transition: background .25s, color .25s;
 }
 .case-tabs button:hover, .feature-tabs button:hover { color: var(--ink); }
 .case-tabs button[aria-selected="true"], .feature-tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
@@ -213,9 +213,29 @@ h3 { font: 600 20px/1.3 var(--sans); margin: 0 0 4px; }
 .case-strip[data-view="intensity"] .case-scale,
 .case-strip[data-view="combat"] .case-scale { display: flex; }
 .case-rows { display: none; }
+/* Cursebreaker charts: their own aspect ratios and readable baked-in names, so one view shows at a time */
+.case-inner[hidden] { display: none; }
+.js .case-inner:not([hidden]) { animation: capIn .4s ease; }
+.case-inner + .case-inner { margin-top: 0; }
+.cb-frames { border-radius: var(--r); border: 1px solid var(--line); overflow: hidden; background: #000; }
+.cb-frames img { display: none; width: 100%; height: auto; }
+.case-strip[data-view="route"] .cb-frames .cs-route,
+.case-strip[data-view="intensity"] .cb-frames .cs-intensity,
+.case-strip[data-view="narrative"] .cb-frames .cs-narrative,
+.case-strip[data-view="combat"] .cb-frames .cs-combat { display: block; animation: capIn .35s ease; }
+.cb-rows { display: none; }
 /* Phones and tablets: show the strip as two rows of three areas (Passageway–Caves, then Swamp–Floating Island),
    so all six areas and the whole curve fit the screen. The images stay in the page for screen readers. */
 @media (max-width: 900px) {
+  /* Cursebreaker: the active chart as rows (crops set inline per row), original images kept for screen readers */
+  .cb-frames { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; }
+  .cb-rows { display: block; }
+  .cb-set { display: none; gap: 8px; }
+  .case-strip[data-view="route"] .cb-set[data-for="route"],
+  .case-strip[data-view="intensity"] .cb-set[data-for="intensity"],
+  .case-strip[data-view="narrative"] .cb-set[data-for="narrative"],
+  .case-strip[data-view="combat"] .cb-set[data-for="combat"] { display: grid; }
+  .cb-set span { display: block; width: 100%; border-radius: var(--r); border: 1px solid var(--line); background: #000 var(--img) no-repeat; }
   .case-scroll { overflow: visible; border: 0; background: none; }
   .case-frames { position: absolute; width: 1px; min-width: 0; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }   /* min-width:0 or the 760px strip widens the page */
   .case-labels-full { display: none; }
@@ -239,6 +259,7 @@ h3 { font: 600 20px/1.3 var(--sans); margin: 0 0 4px; }
 .cs-cap { display: none; }
 .case-strip[data-view="route"] .cs-cap.cs-route,
 .case-strip[data-view="intensity"] .cs-cap.cs-intensity,
+.case-strip[data-view="narrative"] .cs-cap.cs-narrative,
 .case-strip[data-view="combat"] .cs-cap.cs-combat { display: block; animation: capIn .35s ease; }
 @keyframes capIn { from { opacity: 0; } to { opacity: 1; } }
 .case-strip[data-view="route"] .cs-route,
@@ -489,4 +510,7 @@ body.g-hovering { cursor: pointer; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+@media (max-width: 520px) {
+  .case-tabs .tab-extra { display: none; }   /* phones: "Combat" so four tabs fit on one line */
 }
