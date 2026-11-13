@@ -25,7 +25,7 @@ var uiReduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
   const MENU = 96;
   const clampY = y => Math.max(0, Math.min(maxY(), Math.round(y)));
   const content = s => {
-    const c = s.querySelector('.card, .featured-inner') || s;
+    const c = s.querySelector('.card, .featured-wrap') || s;   // the Featured block includes its tabs
     return { top: s.offsetTop + (c === s ? 0 : c.offsetTop), h: c.offsetHeight };   // offsets ignore reveal transforms
   };
   const stops = () => sections.map((s, i) => {          // one stop per section (menu links use these)
@@ -40,7 +40,7 @@ var uiReduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
       if (i === 0) return;
       const { top, h } = content(s);
       const tail = clampY(top + h + 24 - innerHeight);
-      if (tail > base[i] + 8) out.push(tail);
+      if (tail > base[i] + 40) out.push(tail);   // only when there is a meaningful amount left to see
     });
     return out;
   };
