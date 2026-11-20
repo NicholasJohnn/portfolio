@@ -1,11 +1,20 @@
-/* Project pages: GIF clips start as a still frame and only download when someone presses play. */
+/* Project pages: GIF clips start as a still frame and only download when someone presses play.
+   Pressing again pauses (back to the still frame), so moving content can always be stopped. */
 document.querySelectorAll('.pp-gif[data-gif]').forEach(function (btn) {
+  var img = btn.querySelector('img');
+  var still = img.getAttribute('src');
+  var label = btn.dataset.label || 'Clip';
+  var badge = btn.querySelector('.pp-play');
+  btn.setAttribute('aria-pressed', 'false');
   btn.addEventListener('click', function () {
-    if (btn.classList.contains('playing')) return;
-    var img = btn.querySelector('img');
-    img.src = btn.dataset.gif;
-    btn.classList.add('playing');
-    btn.setAttribute('aria-label', (btn.dataset.label || 'Clip') + ' (playing)');
+    var playing = !btn.classList.contains('playing');
+    img.src = playing ? btn.dataset.gif : still;
+    btn.classList.toggle('playing', playing);
+    btn.setAttribute('aria-pressed', String(playing));
+    btn.setAttribute('aria-label', (playing ? 'Pause ' : 'Play ') + label);
+    if (badge) badge.innerHTML = playing
+      ? '<span class="ico ico-pause"></span> Pause'
+      : '<span class="ico ico-right"></span> Play clip';
   });
 });
 
@@ -21,7 +30,7 @@ document.querySelectorAll('.pp-gif[data-gif]').forEach(function (btn) {
   dlg.setAttribute('aria-label', 'Image viewer');
   dlg.innerHTML =
     '<button class="pp-lb-close" type="button" aria-label="Close image"><span class="ico ico-close" aria-hidden="true"></span></button>' +
-    '<div class="pp-lb-stage"><img alt=""></div>' +
+    '<div class="pp-lb-stage"><button class="pp-lb-zoom" type="button" aria-pressed="false" aria-label="Show at actual size"><img alt=""></button></div>' +
     '<p class="pp-lb-caption"></p>' +
     '<p class="pp-lb-hint">' + (touch ? 'Tap the image for actual size' : 'Press the image for actual size · Esc to close') + '</p>';
   document.body.appendChild(dlg);
@@ -37,7 +46,12 @@ document.querySelectorAll('.pp-gif[data-gif]').forEach(function (btn) {
   dlg.addEventListener('close', unlock);
   dlg.querySelector('.pp-lb-close').addEventListener('click', close);
   dlg.addEventListener('click', function (e) { if (e.target === dlg || e.target === stage) close(); });
-  big.addEventListener('click', function () { dlg.classList.toggle('actual'); });
+  var zoom = dlg.querySelector('.pp-lb-zoom');
+  zoom.addEventListener('click', function () {
+    var actual = dlg.classList.toggle('actual');
+    zoom.setAttribute('aria-pressed', String(actual));
+    zoom.setAttribute('aria-label', actual ? 'Fit to screen' : 'Show at actual size');
+  });
 
   imgs.forEach(function (img) {
     var btn = document.createElement('button');
@@ -54,6 +68,8 @@ document.querySelectorAll('.pp-gif[data-gif]').forEach(function (btn) {
       cap.textContent = fc ? fc.textContent : '';
       cap.hidden = !fc;
       dlg.classList.remove('actual');
+      zoom.setAttribute('aria-pressed', 'false');
+      zoom.setAttribute('aria-label', 'Show at actual size');
       document.documentElement.classList.add('pp-lb-open');
       dlg.showModal();
     });
@@ -89,7 +105,8 @@ document.querySelectorAll('.pp-gif[data-gif]').forEach(function (btn) {
     });
     if (idx >= 0 && links[idx].scrollIntoView && window.matchMedia('(max-width: 640px)').matches) {
       var bar = links[idx].closest('ul');   // keep the active link visible in the phone's scrolling row
-      if (bar) bar.scrollTo({ left: links[idx].offsetLeft - 16, behavior: 'smooth' });
+      var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (bar) bar.scrollTo({ left: links[idx].offsetLeft - 16, behavior: calm ? 'auto' : 'smooth' });
     }
   }
   var ticking = false;

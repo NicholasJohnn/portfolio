@@ -44,7 +44,8 @@
 
 .pp-head h1 { font: 700 clamp(34px, 4.8vw, 56px)/1.05 var(--serif); margin: 0 0 12px; letter-spacing: .01em; text-wrap: balance; }
 .pp .pp-meta { color: var(--muted); font-size: var(--fs-meta); font-variant-numeric: tabular-nums; margin-bottom: 6px; line-height: 1.5; }
-.pp .pp-role { color: var(--accent); font-size: var(--fs-meta); line-height: 1.5; margin-bottom: 0; }
+.pp .pp-role { color: var(--accent); font-size: 17px; font-weight: 500; line-height: 1.45; margin: 2px 0 0; text-wrap: balance; }   /* what I did: the fact a recruiter scans for */
+.pp-head-actions { margin-top: 18px; }
 
 /* ---------- hero: the level, in the first screen ---------- */
 .pp > .pp-hero { max-width: var(--wide); margin: 28px auto 8px; }
@@ -83,6 +84,7 @@
 .pp-toc a[aria-current] { color: var(--ink); border-bottom-color: var(--accent); }
 .pp h2[id] { scroll-margin-top: 136px; }   /* nav + section bar */
 .pp h2[id]:focus { outline: none; }
+.pp h2[id]:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 2px; }   /* keyboard jump from the section bar */
 
 /* ---------- sections ---------- */
 .pp section { padding-left: 0; padding-right: 0; }   /* the main stylesheet pads every section; .pp already does */
@@ -122,7 +124,8 @@
   transition: border-color .25s, background .25s;
 }
 .pp-gif:hover .pp-play { border-color: var(--accent); }
-.pp-gif.playing .pp-play { display: none; }
+.pp-gif.playing .pp-play { left: auto; top: auto; right: 12px; bottom: 12px; transform: none; padding: 8px 14px; font-size: 13px; }   /* while playing it becomes a small Pause control */
+.ico-pause { --ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='black'%3E%3Crect x='4' y='3' width='3' height='10' rx='.5'/%3E%3Crect x='9' y='3' width='3' height='10' rx='.5'/%3E%3C/svg%3E"); }
 .pp-gif:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: var(--r); }
 .pp-gif img { aspect-ratio: 710 / 400; }   /* holds its space before the still frame loads */
 
@@ -132,6 +135,7 @@
   .pp-grid { width: var(--bleed); margin-left: calc((100% - var(--bleed)) / 2); grid-template-columns: 1fr 1fr; }
   .pp-grid .pp-fig { width: auto; margin-left: 0; }
   .pp-grid .pp-fig:first-child { grid-column: 1 / -1; }
+  .pp-grid .pp-fig:last-child:nth-child(even) { grid-column: 1 / -1; }   /* no lone half-width image at the end */
 }
 
 /* ---------- image viewer ---------- */
@@ -187,10 +191,8 @@ html.pp-lb-open { overflow: hidden; }
   .pp-switch { margin: 2px 0 14px; }
   .pp-head h1 { margin-bottom: 10px; }
   .pp > .pp-hero { margin-top: 24px; }
-  .pp > .pp-hero img { max-height: max(340px, calc(100svh - 400px)); object-fit: cover; }
-  .pp > .pp-hero.pp-video { max-width: min(var(--wide), calc(max(340px, 100svh - 400px) * 16 / 9)); }
-  .pp > .pp-hero:has(figcaption) img { max-height: max(320px, calc(100svh - 440px)); }   /* leave room for the caption */
-  .pp > .pp-hero.pp-video:has(figcaption) { max-width: min(var(--wide), calc(max(320px, 100svh - 440px) * 16 / 9)); }
+  .pp > .pp-hero img { max-height: max(340px, calc(100svh - 430px)); object-fit: cover; }
+  .pp > .pp-hero:has(figcaption) img { max-height: max(320px, calc(100svh - 470px)); }   /* leave room for the caption */
 }
 
 @media (max-width: 640px) {
@@ -208,4 +210,21 @@ html.pp-lb-open { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   .pp-next > .ico, .pp-zoom img, .pp-switch a { transition: none; }
+}
+
+/* ---------- round 3 ---------- */
+/* the footer card on paired project pages leads deeper into this project */
+.pp-next-sub { font-size: var(--fs-small); color: var(--muted); }
+
+/* image viewer: actual size is a real button (Enter / Space) */
+.pp-lb-zoom { display: block; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: var(--r); }
+.pp-lightbox.actual .pp-lb-zoom { cursor: zoom-out; }
+.pp-lb-zoom:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.pp-lb-zoom img { cursor: inherit; }
+
+/* phones: wide charts keep a readable height and scroll sideways; tap still opens the viewer */
+@media (max-width: 640px) {
+  .pp-fig-wide .pp-zoom { overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; border-radius: var(--r); }
+  .pp-fig-wide img { width: auto; max-width: none; height: 220px; }
+  .pp-fig-wide::after { content: "Swipe to see the whole chart · tap to enlarge"; display: block; margin-top: 8px; color: var(--muted); font-size: var(--fs-label); }
 }
